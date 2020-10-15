@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBT.WebAPI", "SBT.WebAPI\SBT.WebAPI.csproj", "{F25EE226-8BC5-4EBE-8AAA-A510BC7A902B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBT.Model", "SBT.Model\SBT.Model.csproj", "{5B6949A1-27FD-4C47-9632-15032209BCF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F25EE226-8BC5-4EBE-8AAA-A510BC7A902B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25EE226-8BC5-4EBE-8AAA-A510BC7A902B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25EE226-8BC5-4EBE-8AAA-A510BC7A902B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25EE226-8BC5-4EBE-8AAA-A510BC7A902B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B6949A1-27FD-4C47-9632-15032209BCF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B6949A1-27FD-4C47-9632-15032209BCF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B6949A1-27FD-4C47-9632-15032209BCF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B6949A1-27FD-4C47-9632-15032209BCF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8A9F003-636C-472B-AE1F-C9B6EAC63D05}
+	EndGlobalSection
+EndGlobal
