@@ -12,7 +12,8 @@ namespace SBT.WebAPI.Database
         public int UredjajId { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
-        public List<UredjajiKategorija> Kategorije { get; set; }
+        public int KategorijaId { get; set; }
+        public Kategorije Kategorija { get; set; }
         public int ProizvodjacId { get; set; }
         public Proizvodjaci Proizvodjac { get; set; }
         public List<SlikeUredjaja> SlikeUredjaja { get; set; }

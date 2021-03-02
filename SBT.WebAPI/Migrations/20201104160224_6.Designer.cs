@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SBT.WebAPI.Database;
@@ -9,9 +10,10 @@ using SBT.WebAPI.Database;
 namespace SBT.WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201104160224_6")]
+    partial class _6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,64 +34,6 @@ namespace SBT.WebAPI.Migrations
                     b.HasKey("KategorijaId");
 
                     b.ToTable("Kategorije");
-                });
-
-            modelBuilder.Entity("SBT.WebAPI.Database.Korisnici", b =>
-                {
-                    b.Property<int>("KorisnikId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Ime")
-                        .HasColumnType("text");
-
-                    b.Property<string>("KorisnickoIme")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LozinkaHash")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LozinkaSalt")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Prezime")
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("Status")
-                        .HasColumnType("boolean");
-
-                    b.HasKey("KorisnikId");
-
-                    b.ToTable("Korisnici");
-                });
-
-            modelBuilder.Entity("SBT.WebAPI.Database.KorisniciUloge", b =>
-                {
-                    b.Property<int>("KorisnikUlogaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("DatumIzmjene")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("KorisnikId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UlogaId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("KorisnikUlogaId");
-
-                    b.HasIndex("KorisnikId");
-
-                    b.HasIndex("UlogaId");
-
-                    b.ToTable("KorisniciUloge");
                 });
 
             modelBuilder.Entity("SBT.WebAPI.Database.Proizvodjaci", b =>
@@ -146,8 +90,8 @@ namespace SBT.WebAPI.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<byte[]>("Slika")
-                        .HasColumnType("bytea");
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
 
                     b.Property<int>("UredjajId")
                         .HasColumnType("integer");
@@ -189,24 +133,6 @@ namespace SBT.WebAPI.Migrations
                     b.ToTable("TipPlacanja");
                 });
 
-            modelBuilder.Entity("SBT.WebAPI.Database.Uloge", b =>
-                {
-                    b.Property<int>("UlogaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Naziv")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Opis")
-                        .HasColumnType("text");
-
-                    b.HasKey("UlogaId");
-
-                    b.ToTable("Uloge");
-                });
-
             modelBuilder.Entity("SBT.WebAPI.Database.Uredjaji", b =>
                 {
                     b.Property<int>("UredjajId")
@@ -228,11 +154,24 @@ namespace SBT.WebAPI.Migrations
 
                     b.HasKey("UredjajId");
 
-                    b.HasIndex("KategorijaId");
-
                     b.HasIndex("ProizvodjacId");
 
                     b.ToTable("Uredjaji");
+                });
+
+            modelBuilder.Entity("SBT.WebAPI.Database.UredjajiKategorija", b =>
+                {
+                    b.Property<int>("UredjajId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("KategorijaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UredjajId", "KategorijaId");
+
+                    b.HasIndex("KategorijaId");
+
+                    b.ToTable("UredjajiKategorija");
                 });
 
             modelBuilder.Entity("SBT.WebAPI.Database.Zahtjevi", b =>
@@ -271,21 +210,6 @@ namespace SBT.WebAPI.Migrations
                     b.ToTable("Zahtjevi");
                 });
 
-            modelBuilder.Entity("SBT.WebAPI.Database.KorisniciUloge", b =>
-                {
-                    b.HasOne("SBT.WebAPI.Database.Korisnici", "Korisnik")
-                        .WithMany("KorisniciUloge")
-                        .HasForeignKey("KorisnikId")
-                        .HasConstraintName("FK_KorisniciUloge_Korisnici")
-                        .IsRequired();
-
-                    b.HasOne("SBT.WebAPI.Database.Uloge", "Uloga")
-                        .WithMany("KorisniciUloge")
-                        .HasForeignKey("UlogaId")
-                        .HasConstraintName("FK_KorisniciUloge_Uloge")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SBT.WebAPI.Database.Servisi", b =>
                 {
                     b.HasOne("SBT.WebAPI.Database.Zahtjevi", "Zahtjev")
@@ -306,15 +230,24 @@ namespace SBT.WebAPI.Migrations
 
             modelBuilder.Entity("SBT.WebAPI.Database.Uredjaji", b =>
                 {
+                    b.HasOne("SBT.WebAPI.Database.Proizvodjaci", "Proizvodjac")
+                        .WithMany()
+                        .HasForeignKey("ProizvodjacId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SBT.WebAPI.Database.UredjajiKategorija", b =>
+                {
                     b.HasOne("SBT.WebAPI.Database.Kategorije", "Kategorija")
                         .WithMany("Uredjaji")
                         .HasForeignKey("KategorijaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SBT.WebAPI.Database.Proizvodjaci", "Proizvodjac")
-                        .WithMany()
-                        .HasForeignKey("ProizvodjacId")
+                    b.HasOne("SBT.WebAPI.Database.Uredjaji", "Uredjaj")
+                        .WithMany("Kategorije")
+                        .HasForeignKey("UredjajId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -4,9 +4,10 @@ using System.Text;
 
 namespace SBT.Model
 {
-    public class KategorijaModel
+    public class UlogeModel
     {
-        public int KategorijaId { get; set; }
+        public int UlogaId { get; set; }
         public string Naziv { get; set; }
+        public string Opis { get; set; }
     }
 }

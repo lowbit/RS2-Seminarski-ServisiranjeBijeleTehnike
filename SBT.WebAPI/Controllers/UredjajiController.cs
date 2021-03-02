@@ -18,13 +18,18 @@ namespace SBT.WebAPI.Controllers
             _service = service;
         }
 
-        [HttpGet("GetUredjajiList")]
-        public ActionResult<List<Model.UredjajModel>> GetUredjajiList()
+        [HttpGet("{id}")]
+        public ActionResult<Model.UredjajModel> GetUredjajById(int id)
         {
-            return _service.GetUredjajiList();
+            return _service.GetUredjajById(id);
+        }
+        [HttpGet("GetUredjajiList")]
+        public ActionResult<List<Model.UredjajModel>> GetUredjajiList([FromQuery]Model.Requests.UredjajSearchRequest request)
+        {
+            return _service.GetUredjajiList(request);
         }
         [HttpGet("GetKategorijeList")]
-        public ActionResult<List<Model.KategorijaModelAdd>> GetKategorijeList()
+        public ActionResult<List<Model.KategorijaModel>> GetKategorijeList()
         {
             return _service.GetKategorijeList();
         }
@@ -33,10 +38,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.GetProizvodjaciList();
         }
-        [HttpGet("GetUredjajiByKategorijeList")]
+        [HttpGet("GetUredjajiByKategorijaList")]
         public ActionResult<List<Model.UredjajModel>> GetUredjajiByKategorijeList(int kategorijaId)
         {
-            return _service.GetUredjajiByKategorijeList(kategorijaId);
+            return _service.GetUredjajiByKategorijaList(kategorijaId);
         }
         [HttpGet("GetUredjajiByProizvodjaciList")]
         public ActionResult<List<Model.UredjajModel>> GetUredjajiByProizvodjaciList(int proizvodjacId)
@@ -44,7 +49,7 @@ namespace SBT.WebAPI.Controllers
             return _service.GetUredjajiByProizvodjaciList(proizvodjacId);
         }
         [HttpPost("AddKategorija")]
-        public ActionResult<Model.KategorijaModelAdd> AddKategorija(Model.Requests.KategorijaModelRequest kategorija)
+        public ActionResult<Model.KategorijaModel> AddKategorija(Model.Requests.KategorijaModelRequest kategorija)
         {
             return _service.AddKategorija(kategorija);
         }
@@ -59,9 +64,9 @@ namespace SBT.WebAPI.Controllers
             return _service.AddUredjaj(uredjaj);
         }
         [HttpPut("EditUredjaj/{id}")]
-        public ActionResult<Model.UredjajModel> EditUredjaj(int uredjajId, Model.Requests.UredjajModelRequest uredjaj)
+        public ActionResult<Model.UredjajModel> EditUredjaj(int id, Model.Requests.UredjajModelRequest uredjaj)
         {
-            return _service.EditUredjaj(uredjajId, uredjaj);
+            return _service.EditUredjaj(id, uredjaj);
         }
     }
 }

@@ -8,12 +8,13 @@ namespace SBT.WebAPI.Services
 {
     public interface IUredjajiService
     {
-        List<Model.UredjajModel> GetUredjajiList();
-        List<Model.KategorijaModelAdd> GetKategorijeList();
+        Model.UredjajModel GetUredjajById(int uredjajId);
+        List<Model.UredjajModel> GetUredjajiList(Model.Requests.UredjajSearchRequest request);
+        List<Model.KategorijaModel> GetKategorijeList();
         List<Model.ProizvodjacModel> GetProizvodjaciList();
-        List<Model.UredjajModel> GetUredjajiByKategorijeList(int kategorijaId);
+        List<Model.UredjajModel> GetUredjajiByKategorijaList(int kategorijaId);
         List<Model.UredjajModel> GetUredjajiByProizvodjaciList(int proizvodjacId);
-        Model.KategorijaModelAdd AddKategorija(Model.Requests.KategorijaModelRequest request);
+        Model.KategorijaModel AddKategorija(Model.Requests.KategorijaModelRequest request);
         Model.ProizvodjacModel AddProizvodjac(Model.Requests.ProizvodjacModelRequest request);
         Model.UredjajModel AddUredjaj(Model.Requests.UredjajModelRequest request);
         Model.UredjajModel EditUredjaj(int uredjajId, Model.Requests.UredjajModelRequest request);

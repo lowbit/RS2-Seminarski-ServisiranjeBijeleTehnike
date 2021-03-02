@@ -20,16 +20,32 @@ namespace SBT.WebAPI.Services
             _mapper = mapper;
         }
 
-        public List<Model.UredjajModel> GetUredjajiList()
+        public UredjajModel GetUredjajById(int uredjajId)
         {
-            var list = _context.Uredjaji.ToList();
+            var entity = _context.Uredjaji.Find(uredjajId);
+            var returnObj = _mapper.Map<Model.UredjajModel>(entity);
+            var slikaUredjaja = _context.SlikeUredjaja.Where(x => x.UredjajId == entity.UredjajId).OrderBy(x => x.SlikaUredjajaId).FirstOrDefault();
+            if (slikaUredjaja != null)
+            {
+                returnObj.Slika = slikaUredjaja.Slika;
+            }
+            return returnObj;
+        }
+        public List<Model.UredjajModel> GetUredjajiList(Model.Requests.UredjajSearchRequest request)
+        {
+            var query = _context.Uredjaji.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(request?.Naziv))
+            {
+                query = query.Where(u => u.Naziv.StartsWith(request.Naziv));
+            }
+            var list = query.ToList();
             return _mapper.Map<List<Model.UredjajModel>>(list);
         }
 
-        public List<KategorijaModelAdd> GetKategorijeList()
+        public List<KategorijaModel> GetKategorijeList()
         {
             var list = _context.Kategorije.ToList().OrderBy(k=>k.Naziv);
-            return _mapper.Map<List<Model.KategorijaModelAdd>>(list);
+            return _mapper.Map<List<Model.KategorijaModel>>(list);
         }
 
         public List<ProizvodjacModel> GetProizvodjaciList()
@@ -38,9 +54,9 @@ namespace SBT.WebAPI.Services
             return _mapper.Map<List<Model.ProizvodjacModel>>(list);
         }
 
-        public List<UredjajModel> GetUredjajiByKategorijeList(int kategorijaId)
+        public List<UredjajModel> GetUredjajiByKategorijaList(int kategorijaId)
         {
-            var list = _context.Uredjaji.Where(x=>x.Kategorije.Any(k=>k.KategorijaId==kategorijaId)).ToList();
+            var list = _context.Uredjaji.Where(x=>x.KategorijaId==kategorijaId).ToList();
             return _mapper.Map<List<Model.UredjajModel>>(list);
         }
 
@@ -50,13 +66,13 @@ namespace SBT.WebAPI.Services
             return _mapper.Map<List<Model.UredjajModel>>(list);
         }
 
-        public KategorijaModelAdd AddKategorija(Model.Requests.KategorijaModelRequest request)
+        public KategorijaModel AddKategorija(Model.Requests.KategorijaModelRequest request)
         {
             //throw new UserException("Test");
             var entity = _mapper.Map<Database.Kategorije>(request);
             _context.Kategorije.Add(entity);
             _context.SaveChanges();
-            return _mapper.Map<KategorijaModelAdd>(entity);
+            return _mapper.Map<KategorijaModel>(entity);
         }
 
         public ProizvodjacModel AddProizvodjac(Model.Requests.ProizvodjacModelRequest request)
@@ -72,16 +88,45 @@ namespace SBT.WebAPI.Services
             var entity = _mapper.Map<Database.Uredjaji>(request);
             _context.Uredjaji.Add(entity);
             _context.SaveChanges();
+            //Dodaj sliku za uredjaj
+            if (request.Slika != null)
+            {
+                var pictureForDevice = new SlikeUredjaja();
+                pictureForDevice.UredjajId = entity.UredjajId;
+                pictureForDevice.Slika = request.Slika;
+                _context.SlikeUredjaja.Add(pictureForDevice);
+                _context.SaveChanges();
+            }
             return _mapper.Map<UredjajModel>(entity);
         }
 
-        public UredjajModel EditUredjaj(int uredjajId, Model.Requests.UredjajModelRequest request)
+        public UredjajModel EditUredjaj(int id, Model.Requests.UredjajModelRequest request)
         {
-            var entity = _context.Uredjaji.Find(uredjajId);
+            var entity = _context.Uredjaji.Find(id);
             _context.Uredjaji.Attach(entity);
             _context.Uredjaji.Update(entity);
-            entity = _mapper.Map<Database.Uredjaji>(request);
+            _mapper.Map(request, entity);
             _context.SaveChanges();
+
+            //Dodaj sliku za uredjaj
+            if (request.Slika != null)
+            {
+                //Getaj prvu default sliku i updejtaj ili dodaj novu ako nema slike
+                SlikeUredjaja pictureEntity = _context.SlikeUredjaja.Where(x=>x.UredjajId == entity.UredjajId).OrderBy(x=>x.SlikaUredjajaId).FirstOrDefault();
+                if (pictureEntity != null)
+                {
+                    pictureEntity.Slika = request.Slika;
+                    _context.SlikeUredjaja.Update(pictureEntity);
+                }
+                else
+                {
+                    var pictureForDevice = new SlikeUredjaja();
+                    pictureForDevice.UredjajId = entity.UredjajId;
+                    pictureForDevice.Slika = request.Slika;
+                    _context.SlikeUredjaja.Add(pictureForDevice);
+                }
+                _context.SaveChanges();
+            }
             return _mapper.Map<UredjajModel>(entity);
         }
     }

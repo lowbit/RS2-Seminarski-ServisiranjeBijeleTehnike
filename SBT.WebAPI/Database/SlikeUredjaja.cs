@@ -10,7 +10,7 @@ namespace SBT.WebAPI.Database
     {
         [Key]
         public int SlikaUredjajaId { get; set; }
-        public string Path { get; set; }
+        public byte[] Slika { get; set; }
         public int UredjajId { get; set; }
         public Uredjaji Uredjaj { get; set; }
     }

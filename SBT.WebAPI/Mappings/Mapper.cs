@@ -10,9 +10,13 @@ namespace SBT.WebAPI.Mappings
     {
         public Mapper()
         {
+            CreateMap<Database.Korisnici, Model.KorisniciModel>().ReverseMap();
+            CreateMap<Database.Korisnici, Model.Requests.KorisniciInsertRequest>().ReverseMap();
+            CreateMap<Database.Uloge, Model.UlogeModel>().ReverseMap();
+            CreateMap<Database.KorisniciUloge, Model.KorisniciUlogeModel>().ReverseMap();
             CreateMap<Database.Servisi, Model.ServisModel>().ReverseMap();
             CreateMap<Database.Uredjaji, Model.UredjajModel>().ReverseMap();
-            CreateMap<Database.Kategorije, Model.KategorijaModelAdd>().ReverseMap();
+            CreateMap<Database.Kategorije, Model.KategorijaModel>().ReverseMap();
             CreateMap<Database.Proizvodjaci, Model.ProizvodjacModel>().ReverseMap();
             CreateMap<Database.Uredjaji, Model.Requests.UredjajModelRequest>().ReverseMap();
             CreateMap<Database.Kategorije, Model.Requests.KategorijaModelRequest>().ReverseMap();

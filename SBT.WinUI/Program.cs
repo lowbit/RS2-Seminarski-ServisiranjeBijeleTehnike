@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SBT.WinUI.Uredjaji;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,14 @@ namespace SBT.WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            frmLogin login = new frmLogin();
+
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+
+                Application.Run(new frmIndex());
+
+            }
         }
     }
 }

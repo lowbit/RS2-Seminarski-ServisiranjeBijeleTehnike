@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SBT.Model
+namespace SBT.Model.Requests
 {
-    public class KategorijaModel
+    public class UredjajSearchRequest
     {
-        public int KategorijaId { get; set; }
         public string Naziv { get; set; }
     }
 }

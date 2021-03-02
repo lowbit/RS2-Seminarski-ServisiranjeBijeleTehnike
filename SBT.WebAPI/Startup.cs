@@ -16,6 +16,8 @@ using SBT.WebAPI.Database;
 using SBT.WebAPI.Services;
 using AutoMapper;
 using SBT.WebAPI.Filters;
+using Microsoft.AspNetCore.Authentication;
+using SBT.WebAPI.Security;
 
 namespace SBT.WebAPI
 {
@@ -41,8 +43,36 @@ namespace SBT.WebAPI
                     Title = "My API",
                     Description = "ASP.NET Core Web API",
                 });
-            });
+                c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic",
+                    In = ParameterLocation.Header,
+                    Description = "Basic Authorization header using the Bearer scheme."
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {{
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "basic"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+                }); 
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IKorisniciService, KorisniciService>();
             services.AddScoped<IServisiService, ServisiService>();
             services.AddScoped<IUredjajiService, UredjajiService>();
             services.AddScoped<IZahtjeviService, ZahtjeviService>();
@@ -66,6 +96,8 @@ namespace SBT.WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
