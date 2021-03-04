@@ -22,5 +22,6 @@ namespace SBT.WebAPI.Database
         public string LozinkaSalt { get; set; }
         public bool? Status { get; set; }
         public ICollection<KorisniciUloge> KorisniciUloge { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

@@ -52,5 +52,25 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.Authenticiraj(username, password);
         }
+        [HttpGet("GetKorisniciList")]
+        public ActionResult<List<Model.KorisnikModel>> GetKorisniciList([FromQuery] Model.Requests.SearchRequest request)
+        {
+            return _service.GetKorisniciList(request);
+        }
+        [HttpGet("GetUlogeList")]
+        public List<Model.UlogeModel> GetUlogeList()
+        {
+            return _service.GetUlogeList();
+        }
+        [HttpPost("AddKorisnik")]
+        public ActionResult<Model.KorisnikModel> AddKorisnik(KorisnikUpdateRequest korisnik)
+        {
+            return _service.AddKorisnik(korisnik);
+        }
+        [HttpPut("EditKorisnik/{id}")]
+        public ActionResult<Model.KorisnikModel> EditKorisnik(int id, KorisnikUpdateRequest korisnik)
+        {
+            return _service.EditKorisnik(id, korisnik);
+        }
     }
 }

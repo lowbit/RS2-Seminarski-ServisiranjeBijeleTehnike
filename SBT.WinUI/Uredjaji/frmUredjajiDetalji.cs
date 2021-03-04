@@ -16,7 +16,9 @@ namespace SBT.WinUI.Uredjaji
     {
         private int? _id = null;
         private readonly APIService _service = new APIService("Uredjaji");
-        Model.UredjajModel request = new Model.UredjajModel();
+        UredjajModelRequest request = new UredjajModelRequest();
+        List<Model.KategorijaModel> kategorije;
+        List<Model.ProizvodjacModel> proizvodjaci;
         public frmUredjajiDetalji(int? uredjajId = null)
         {
             InitializeComponent();
@@ -41,8 +43,8 @@ namespace SBT.WinUI.Uredjaji
             if (_id.HasValue)
             {
                 var uredjaj = await _service.GetById<Model.UredjajModel>(_id);
-                listKategorija.SelectedText = uredjaj.KategorijaId.ToString();
-                listProizvodjac.SelectedText = uredjaj.ProizvodjacId.ToString();
+                listKategorija.SelectedValue = uredjaj.KategorijaId;
+                listProizvodjac.SelectedValue = uredjaj.ProizvodjacId;
                 textNaziv.Text = uredjaj.Naziv;
                 textOpis.Text = uredjaj.Opis;
                 //Convert Byte Array to Image and display in PictureBox.
@@ -54,13 +56,23 @@ namespace SBT.WinUI.Uredjaji
         }
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            if (this.ValidateChildren())
+            errorProvider.SetError(listKategorija, null);
+            errorProvider.SetError(listProizvodjac, null);
+            if (int.Parse(listKategorija.SelectedValue.ToString()) == 0)
+            {
+                errorProvider.SetError(listKategorija, "Izaberite kategoriju");
+            }
+            if (int.Parse(listProizvodjac.SelectedValue.ToString()) == 0)
+            {
+                errorProvider.SetError(listProizvodjac, "Izaberite proizvodjaca");
+            }
+            if (this.ValidateChildren() && int.Parse(listKategorija.SelectedValue.ToString()) != 0 && int.Parse(listProizvodjac.SelectedValue.ToString()) != 0)
             {
 
-                request.KategorijaId = int.Parse(listKategorija.Text);
+                request.KategorijaId = int.Parse(listKategorija.SelectedValue.ToString());
+                request.ProizvodjacId = int.Parse(listProizvodjac.SelectedValue.ToString());
                 request.Naziv = textNaziv.Text;
                 request.Opis = textOpis.Text;
-                request.ProizvodjacId = int.Parse(listProizvodjac.Text);
 
                 Model.UredjajModel entity = null;
                 if (_id.HasValue)
@@ -74,16 +86,20 @@ namespace SBT.WinUI.Uredjaji
                 if (entity != null)
                 {
                     MessageBox.Show("Uspjesno izvrseno");
+                    if (!_id.HasValue)
+                    {
+                        this.Close();
+                    }
                 }
             }
         }
 
         private void textNaziv_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textNaziv.Text))
+            if (textNaziv.Text.Length<3)
             {
                 e.Cancel = true;
-                errorProvider.SetError(textNaziv, "Obavezno polje");
+                errorProvider.SetError(textNaziv, "Naziv mora biti veci");
             } else
             {
                 errorProvider.SetError(textNaziv, null);
@@ -103,6 +119,7 @@ namespace SBT.WinUI.Uredjaji
             listKategorija.DisplayMember = "Naziv";
             listKategorija.ValueMember = "KategorijaId";
             listKategorija.DataSource = result;
+            kategorije = result;
         }
         private async Task LoadProizvodjace()
         {
@@ -111,11 +128,13 @@ namespace SBT.WinUI.Uredjaji
             listProizvodjac.DisplayMember = "Naziv";
             listProizvodjac.ValueMember = "ProizvodjacId";
             listProizvodjac.DataSource = result;
+            proizvodjaci = result;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            errorProvider.SetError(listKategorija, null);
         }
 
         private void dodajSliku_Click(object sender, EventArgs e)
@@ -130,6 +149,11 @@ namespace SBT.WinUI.Uredjaji
                 pictureBox1.Image = image;
 
             }
+        }
+
+        private void listProizvodjac_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            errorProvider.SetError(listProizvodjac, null);
         }
     }
 }

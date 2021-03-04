@@ -17,6 +17,7 @@ namespace SBT.WinUI
         public frmLogin()
         {
             InitializeComponent();
+            this.AcceptButton = btnLogin;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -24,7 +25,7 @@ namespace SBT.WinUI
 
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
+        public async void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
@@ -37,6 +38,8 @@ namespace SBT.WinUI
                         if (item.Uloga.Naziv == "admin")
                         {
                             userIsAdmin = true;
+                            APIService.Username = txtUsername.Text;
+                            APIService.Password = txtPassword.Text;
                         }
                     }
                     if (userIsAdmin)
@@ -57,6 +60,10 @@ namespace SBT.WinUI
             {
                 MessageBox.Show(ex.Message, "Authentikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }

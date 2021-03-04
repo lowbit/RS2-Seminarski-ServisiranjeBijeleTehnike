@@ -1,4 +1,6 @@
-﻿using SBT.WinUI.Uredjaji;
+﻿using SBT.WinUI.Korisnici;
+using SBT.WinUI.Servisi;
+using SBT.WinUI.Uredjaji;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,6 +122,32 @@ namespace SBT.WinUI
         private void noviUređajToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUredjajiDetalji frm = new frmUredjajiDetalji(null);
+            frm.Show();
+        }
+
+        private void frmIndex_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKorisnici frm = new frmKorisnici();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKorisniciDetalji frm = new frmKorisniciDetalji();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frmServisi frm = new frmServisi();
+            frm.MdiParent = this;
             frm.Show();
         }
     }

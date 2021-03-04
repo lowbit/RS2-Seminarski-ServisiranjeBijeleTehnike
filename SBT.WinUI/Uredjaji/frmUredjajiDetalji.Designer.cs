@@ -128,6 +128,7 @@
             this.listProizvodjac.Name = "listProizvodjac";
             this.listProizvodjac.Size = new System.Drawing.Size(303, 21);
             this.listProizvodjac.TabIndex = 12;
+            this.listProizvodjac.SelectedIndexChanged += new System.EventHandler(this.listProizvodjac_SelectedIndexChanged);
             // 
             // dodajSliku
             // 

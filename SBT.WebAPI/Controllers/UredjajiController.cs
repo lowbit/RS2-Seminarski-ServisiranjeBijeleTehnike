@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SBT.WebAPI.Database;
 using SBT.WebAPI.Services;
 
 namespace SBT.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UredjajiController : ControllerBase
@@ -24,7 +26,7 @@ namespace SBT.WebAPI.Controllers
             return _service.GetUredjajById(id);
         }
         [HttpGet("GetUredjajiList")]
-        public ActionResult<List<Model.UredjajModel>> GetUredjajiList([FromQuery]Model.Requests.UredjajSearchRequest request)
+        public ActionResult<List<Model.UredjajModel>> GetUredjajiList([FromQuery]Model.Requests.SearchRequest request)
         {
             return _service.GetUredjajiList(request);
         }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using SBT.Model;
 using SBT.Model.Requests;
 using SBT.WebAPI.Database;
 using System;
@@ -140,6 +141,85 @@ namespace SBT.WebAPI.Services
             _context.SaveChanges();
 
             return _mapper.Map<Model.KorisniciModel>(entity);
+        }
+        public List<Model.KorisnikModel> GetKorisniciList(Model.Requests.SearchRequest request)
+        {
+            var query = _context.Korisnici.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(request?.Naziv))
+            {
+                query = query.Where(u => u.KorisnickoIme.Contains(request.Naziv));
+            }
+            if (!string.IsNullOrWhiteSpace(request?.Ime))
+            {
+                query = query.Where(u => u.Ime.Contains(request.Ime));
+            }
+            if (!string.IsNullOrWhiteSpace(request?.Prezime))
+            {
+                query = query.Where(u => u.Prezime.Contains(request.Prezime));
+            }
+            if (!string.IsNullOrWhiteSpace(request?.Email))
+            {
+                query = query.Where(u => u.Email.Contains(request.Email));
+            }
+            var list = query.ToList();
+            return _mapper.Map<List<Model.KorisnikModel>>(list);
+        }
+        public List<Model.UlogeModel> GetUlogeList()
+        {
+            var uloge = _context.Uloge.ToList();
+            return _mapper.Map<List<Model.UlogeModel>>(uloge);
+        }
+
+        public KorisnikModel AddKorisnik(KorisnikUpdateRequest request)
+        {
+            var entity = _mapper.Map<Database.Korisnici>(request);
+            _context.Korisnici.Add(entity);
+            _context.SaveChanges();
+
+            if (request.Uloge.Count>0)
+            {
+                var role = _context.KorisniciUloge.Where(x => x.KorisnikId == entity.KorisnikId);
+                _context.KorisniciUloge.RemoveRange(role);
+                foreach (var item in request.Uloge)
+                {
+                    var korisnikUloga = new KorisniciUloge
+                    {
+                        KorisnikId = entity.KorisnikId,
+                        UlogaId = item,
+                        DatumIzmjene = DateTime.Now
+                    };
+                    _context.KorisniciUloge.Add(korisnikUloga);
+                }
+                _context.SaveChanges();
+            }
+            return _mapper.Map<KorisnikModel>(entity);
+        }
+
+        public KorisnikModel EditKorisnik(int id, KorisnikUpdateRequest request)
+        {
+            var entity = _context.Korisnici.Find(id);
+            _context.Korisnici.Attach(entity);
+            _context.Korisnici.Update(entity);
+            _mapper.Map(request, entity);
+            _context.SaveChanges();
+
+            var role = _context.KorisniciUloge.Where(x => x.KorisnikId == entity.KorisnikId);
+            _context.KorisniciUloge.RemoveRange(role);
+            if (request.Uloge.Count > 0)
+            {
+                foreach (var item in request.Uloge)
+                {
+                    var korisnikUloga = new KorisniciUloge
+                    {
+                        KorisnikId = entity.KorisnikId,
+                        UlogaId = item,
+                        DatumIzmjene = DateTime.Now
+                    };
+                    _context.KorisniciUloge.Add(korisnikUloga);
+                }
+            }
+            _context.SaveChanges();
+            return _mapper.Map<KorisnikModel>(entity);
         }
     }
 }

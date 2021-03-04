@@ -32,7 +32,7 @@ namespace SBT.WinUI.Uredjaji
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
             dgvUredjaji.AutoGenerateColumns = false;
-            var search = new UredjajSearchRequest()
+            var search = new SearchRequest()
             {
                 Naziv = txtPretraga.Text
             };

@@ -31,12 +31,12 @@ namespace SBT.WebAPI.Services
             }
             return returnObj;
         }
-        public List<Model.UredjajModel> GetUredjajiList(Model.Requests.UredjajSearchRequest request)
+        public List<Model.UredjajModel> GetUredjajiList(Model.Requests.SearchRequest request)
         {
             var query = _context.Uredjaji.AsQueryable();
             if (!string.IsNullOrWhiteSpace(request?.Naziv))
             {
-                query = query.Where(u => u.Naziv.StartsWith(request.Naziv));
+                query = query.Where(u => u.Naziv.Contains(request.Naziv));
             }
             var list = query.ToList();
             return _mapper.Map<List<Model.UredjajModel>>(list);
@@ -50,13 +50,13 @@ namespace SBT.WebAPI.Services
 
         public List<ProizvodjacModel> GetProizvodjaciList()
         {
-            var list = _context.Proizvodjaci.ToList().OrderBy(u=>u.Naziv);
+            var list = _context.Proizvodjaci.OrderBy(x => x.ProizvodjacId).ToList();
             return _mapper.Map<List<Model.ProizvodjacModel>>(list);
         }
 
         public List<UredjajModel> GetUredjajiByKategorijaList(int kategorijaId)
         {
-            var list = _context.Uredjaji.Where(x=>x.KategorijaId==kategorijaId).ToList();
+            var list = _context.Uredjaji.Where(x=>x.KategorijaId==kategorijaId).OrderBy(x=>x.KategorijaId).ToList();
             return _mapper.Map<List<Model.UredjajModel>>(list);
         }
 

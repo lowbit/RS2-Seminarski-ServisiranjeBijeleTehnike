@@ -9,7 +9,7 @@ namespace SBT.WebAPI.Services
     public interface IUredjajiService
     {
         Model.UredjajModel GetUredjajById(int uredjajId);
-        List<Model.UredjajModel> GetUredjajiList(Model.Requests.UredjajSearchRequest request);
+        List<Model.UredjajModel> GetUredjajiList(Model.Requests.SearchRequest request);
         List<Model.KategorijaModel> GetKategorijeList();
         List<Model.ProizvodjacModel> GetProizvodjaciList();
         List<Model.UredjajModel> GetUredjajiByKategorijaList(int kategorijaId);
