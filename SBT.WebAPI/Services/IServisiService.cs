@@ -9,5 +9,6 @@ namespace SBT.WebAPI.Services
     public interface IServisiService
     {
         List<Model.ServisModel> GetList();
+        List<Model.ServisModel> GetServisiList(Model.Requests.SearchRequestServis request);
     }
 }

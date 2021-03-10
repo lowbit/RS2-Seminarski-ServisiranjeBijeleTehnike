@@ -13,9 +13,19 @@ namespace SBT.WebAPI.Database
         public string Opis { get; set; }
         public DateTime DatumServisa { get; set; }
         public double Cijena { get; set; }
-        public int Ocjena { get; set; }
-        public string Status { get; set; }
-        public int ZahtjevId { get; set; }
-        public Zahtjevi Zahtjev { get; set; }
+        public int OcjenaServisa { get; set; }
+        public int StatusServisaId { get; set; }
+        public StatusServisa Status { get; set; }
+        public int ServiserId { get; set; }
+        public Korisnici Serviser { get; set; }
+        public int KlijentId { get; set; }
+        public Korisnici Klijent { get; set; }
+        public int UredjajId { get; set; }
+        public Uredjaji Uredjaj { get; set; }
+        public int TipPlacanjaId { get; set; }
+        public TipPlacanja TipPlacanja { get; set; }
+        public int TipDostaveId { get; set; }
+        public TipDostave TipDostave { get; set; }
+        public ICollection<StanjeServisa> StanjeServisa { get; set; }
     }
 }

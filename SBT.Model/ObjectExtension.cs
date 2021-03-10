@@ -36,7 +36,9 @@ namespace SBT.Model
                 {
                     return ToKeyValue(JObject.FromObject(metaToken, JsonSerializerSettings));
                 }
+#pragma warning disable CS0168 // Variable is declared but never used
                 catch (System.ArgumentException ex)
+#pragma warning restore CS0168 // Variable is declared but never used
                 {
                     var dict = new Dictionary<string, string>();
                     dict.Add("id", metaToken.ToString());

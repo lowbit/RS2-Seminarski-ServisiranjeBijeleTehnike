@@ -150,5 +150,10 @@ namespace SBT.WinUI
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void noviIzvjestajToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

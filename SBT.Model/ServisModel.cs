@@ -10,8 +10,12 @@ namespace SBT.Model
         public string Opis { get; set; }
         public DateTime DatumServisa { get; set; }
         public double Cijena { get; set; }
-        public int Ocjena { get; set; }
+        public int OcjenaServisa { get; set; }
         public string Status { get; set; }
-        public int ZahtjevId { get; set; }
+        public string UredjajNaziv { get; set; }
+        public string ServiserIme { get; set; }
+        public string KlijentIme { get; set; }
+        public string TipPlacanjaNaziv { get; set; }
+        public string TipDostaveNaziv { get; set; }
     }
 }

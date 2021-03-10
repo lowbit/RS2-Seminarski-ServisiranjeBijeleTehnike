@@ -75,7 +75,6 @@ namespace SBT.WebAPI
             services.AddScoped<IKorisniciService, KorisniciService>();
             services.AddScoped<IServisiService, ServisiService>();
             services.AddScoped<IUredjajiService, UredjajiService>();
-            services.AddScoped<IZahtjeviService, ZahtjeviService>();
             services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
         }
 

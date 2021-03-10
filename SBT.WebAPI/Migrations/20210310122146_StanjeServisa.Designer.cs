@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SBT.WebAPI.Database;
@@ -9,9 +10,10 @@ using SBT.WebAPI.Database;
 namespace SBT.WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210310122146_StanjeServisa")]
+    partial class StanjeServisa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,8 +137,8 @@ namespace SBT.WebAPI.Migrations
                     b.Property<int>("ServiserId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("StatusServisaId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
 
                     b.Property<int>("TipDostaveId")
                         .HasColumnType("integer");
@@ -152,8 +154,6 @@ namespace SBT.WebAPI.Migrations
                     b.HasIndex("KlijentId");
 
                     b.HasIndex("ServiserId");
-
-                    b.HasIndex("StatusServisaId");
 
                     b.HasIndex("TipDostaveId");
 
@@ -200,31 +200,14 @@ namespace SBT.WebAPI.Migrations
                     b.Property<int?>("ServisId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("StatusServisaId")
-                        .HasColumnType("integer");
+                    b.Property<string>("TrenutniStatus")
+                        .HasColumnType("text");
 
                     b.HasKey("StanjeServisaId");
 
                     b.HasIndex("ServisId");
 
-                    b.HasIndex("StatusServisaId");
-
                     b.ToTable("StanjeServisa");
-                });
-
-            modelBuilder.Entity("SBT.WebAPI.Database.StatusServisa", b =>
-                {
-                    b.Property<int>("StatusServisaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Naziv")
-                        .HasColumnType("text");
-
-                    b.HasKey("StatusServisaId");
-
-                    b.ToTable("StatusServisa");
                 });
 
             modelBuilder.Entity("SBT.WebAPI.Database.TipDostave", b =>
@@ -332,12 +315,6 @@ namespace SBT.WebAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SBT.WebAPI.Database.StatusServisa", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusServisaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SBT.WebAPI.Database.TipDostave", "TipDostave")
                         .WithMany()
                         .HasForeignKey("TipDostaveId")
@@ -371,12 +348,6 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Servisi", null)
                         .WithMany("StanjeServisa")
                         .HasForeignKey("ServisId");
-
-                    b.HasOne("SBT.WebAPI.Database.StatusServisa", "TrenutniStatus")
-                        .WithMany()
-                        .HasForeignKey("StatusServisaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("SBT.WebAPI.Database.Uredjaji", b =>

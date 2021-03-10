@@ -41,10 +41,10 @@ namespace SBT.WebAPI.Database
         public virtual DbSet<Kategorije> Kategorije { get; set; }
         public virtual DbSet<Proizvodjaci> Proizvodjaci { get; set; }
         public virtual DbSet<Servisi> Servisi { get; set; }
+        public virtual DbSet<StanjeServisa> StanjeServisa { get; set; }
         public virtual DbSet<SlikeUredjaja> SlikeUredjaja { get; set; }
         public virtual DbSet<TipDostave> TipDostave { get; set; }
         public virtual DbSet<TipPlacanja> TipPlacanja { get; set; }
         public virtual DbSet<Uredjaji> Uredjaji { get; set; }
-        public virtual DbSet<Zahtjevi> Zahtjevi { get; set; }
     }
 }

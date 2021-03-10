@@ -27,5 +27,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.GetList(); ;
         }
+        [HttpGet("GetServisiList")]
+        public ActionResult<List<Model.ServisModel>> GetServisiList([FromQuery] Model.Requests.SearchRequestServis request)
+        {
+            return _service.GetServisiList(request);
+        }
     }
 }

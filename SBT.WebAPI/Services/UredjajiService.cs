@@ -38,6 +38,10 @@ namespace SBT.WebAPI.Services
             {
                 query = query.Where(u => u.Naziv.Contains(request.Naziv));
             }
+            if (!string.IsNullOrWhiteSpace(request?.KategorijaId))
+            {
+                query = query.Where(u => u.KategorijaId.Equals(int.Parse(request.KategorijaId)));
+            }
             var list = query.ToList();
             return _mapper.Map<List<Model.UredjajModel>>(list);
         }

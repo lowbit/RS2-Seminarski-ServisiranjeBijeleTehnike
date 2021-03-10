@@ -140,6 +140,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Servisi\frmServisi.resx">
+      <DependentUpon>frmServisi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Servisi\frmServisiDetalji.resx">
+      <DependentUpon>frmServisiDetalji.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uredjaji\frmUredjaji.resx">
       <DependentUpon>frmUredjaji.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +172,8 @@
       <Name>SBT.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

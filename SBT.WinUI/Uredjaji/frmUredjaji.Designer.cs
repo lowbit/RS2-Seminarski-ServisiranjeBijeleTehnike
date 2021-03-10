@@ -39,6 +39,8 @@
             this.ProizvodjacID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.listKategorija = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUredjaji)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -56,10 +58,11 @@
             // 
             // txtPretraga
             // 
-            this.txtPretraga.Location = new System.Drawing.Point(6, 33);
+            this.txtPretraga.Location = new System.Drawing.Point(140, 33);
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(683, 20);
+            this.txtPretraga.Size = new System.Drawing.Size(549, 20);
             this.txtPretraga.TabIndex = 2;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
             // groupBox1
             // 
@@ -129,6 +132,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.listKategorija);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtPretraga);
             this.groupBox2.Controls.Add(this.btnPrikazi);
@@ -142,11 +147,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Location = new System.Drawing.Point(137, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Naziv";
+            // 
+            // listKategorija
+            // 
+            this.listKategorija.FormattingEnabled = true;
+            this.listKategorija.Location = new System.Drawing.Point(6, 32);
+            this.listKategorija.Name = "listKategorija";
+            this.listKategorija.Size = new System.Drawing.Size(128, 21);
+            this.listKategorija.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Kategorija";
             // 
             // frmUredjaji
             // 
@@ -157,6 +179,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUredjaji";
             this.Text = "frmUredjaji";
+            this.Load += new System.EventHandler(this.frmUredjaji_Load);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.frmUredjaji_MouseDoubleClick);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUredjaji)).EndInit();
@@ -178,5 +201,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProizvodjacID;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox listKategorija;
+        private System.Windows.Forms.Label label2;
     }
 }
