@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace SBT.WinUI
 {
-    public partial class frmIndex : Form
+    public partial class Home : Form
     {
         private int childFormNumber = 0;
 
-        public frmIndex()
+        public Home()
         {
             InitializeComponent();
         }
@@ -153,7 +153,9 @@ namespace SBT.WinUI
 
         private void noviIzvjestajToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmServiseriReport frm = new frmServiseriReport();
+            //frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

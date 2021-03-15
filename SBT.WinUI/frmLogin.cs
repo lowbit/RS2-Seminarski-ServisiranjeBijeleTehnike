@@ -65,5 +65,10 @@ namespace SBT.WinUI
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

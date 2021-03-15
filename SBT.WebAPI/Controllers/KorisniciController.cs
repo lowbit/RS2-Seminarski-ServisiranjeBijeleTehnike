@@ -72,5 +72,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.EditKorisnik(id, korisnik);
         }
+        [HttpGet("GetServiseriList")]
+        public ActionResult<List<Model.KorisniciModel>> GetKategorijeList()
+        {
+            return _service.GetServiseriList();
+        }
     }
 }

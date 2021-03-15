@@ -18,5 +18,6 @@ namespace SBT.WebAPI.Services
         List<Model.UlogeModel> GetUlogeList();
         KorisnikModel AddKorisnik(KorisnikUpdateRequest request);
         KorisnikModel EditKorisnik(int id, KorisnikUpdateRequest request);
+        List<Model.KorisniciModel> GetServiseriList();
     }
 }

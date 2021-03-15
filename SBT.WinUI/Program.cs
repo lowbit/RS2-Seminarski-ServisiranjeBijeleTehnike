@@ -22,7 +22,7 @@ namespace SBT.WinUI
             if (login.ShowDialog() == DialogResult.OK)
             {
 
-                Application.Run(new frmIndex());
+                Application.Run(new Home());
 
             }
         }

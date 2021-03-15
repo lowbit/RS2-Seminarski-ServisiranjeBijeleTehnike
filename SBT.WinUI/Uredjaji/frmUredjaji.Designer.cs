@@ -38,9 +38,9 @@
             this.KategorijaID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProizvodjacID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.listKategorija = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUredjaji)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -144,15 +144,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(137, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Naziv";
-            // 
             // listKategorija
             // 
             this.listKategorija.FormattingEnabled = true;
@@ -170,6 +161,15 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Kategorija";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(137, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Naziv";
+            // 
             // frmUredjaji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,7 +178,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUredjaji";
-            this.Text = "frmUredjaji";
+            this.Text = "Uredjaji";
             this.Load += new System.EventHandler(this.frmUredjaji_Load);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.frmUredjaji_MouseDoubleClick);
             this.groupBox1.ResumeLayout(false);

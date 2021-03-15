@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SBT.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,10 +21,23 @@ namespace SBT.WinUI.Servisi
             _id = id;
         }
 
-        private void frmServisiDetalji_Load(object sender, EventArgs e)
+        private async void frmServisiDetalji_Load(object sender, EventArgs e)
         {
             if (_id.HasValue)
             {
+                ServisModel result = await _service.GetById<ServisModel>(_id);
+                textBoxCijena.Text = result.Cijena.ToString();
+                textBoxDatumServisa.Text = result.DatumServisa.ToString();
+                textBoxKlijent.Text = result.KlijentIme;
+                textBoxOcjena.Text = result.OcjenaServisa.ToString();
+                textBoxServiser.Text = result.ServiserIme;
+                textBoxStatus.Text = result.Status;
+                textBoxTipDostave.Text = result.TipDostaveNaziv;
+                textBoxTipPlacanja.Text = result.TipPlacanjaNaziv;
+                textBoxUredjaj.Text = result.UredjajNaziv;
+                richTextBoxOpis.Text = result.Opis;
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.DataSource = result.StanjeServisa;
             }
         }
     }

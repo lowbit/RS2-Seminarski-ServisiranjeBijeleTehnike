@@ -10,5 +10,6 @@ namespace SBT.WebAPI.Services
     {
         List<Model.ServisModel> GetList();
         List<Model.ServisModel> GetServisiList(Model.Requests.SearchRequestServis request);
+        Model.ServisModel GetById(int id);
     }
 }

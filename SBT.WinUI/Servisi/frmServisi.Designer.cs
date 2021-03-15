@@ -30,6 +30,9 @@ namespace SBT.WinUI.Servisi
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmailKlijenta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,9 +44,6 @@ namespace SBT.WinUI.Servisi
             this.btnPrikazi = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvServisi = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkBox = new System.Windows.Forms.CheckBox();
             this.servisId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.opis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datumServisa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,6 +80,35 @@ namespace SBT.WinUI.Servisi
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // checkBox
+            // 
+            this.checkBox.AutoSize = true;
+            this.checkBox.Location = new System.Drawing.Point(662, 35);
+            this.checkBox.Name = "checkBox";
+            this.checkBox.Size = new System.Drawing.Size(15, 14);
+            this.checkBox.TabIndex = 16;
+            this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(659, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Datum servisa";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(683, 32);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(185, 20);
+            this.dateTimePicker1.TabIndex = 14;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -145,6 +174,7 @@ namespace SBT.WinUI.Servisi
             this.txtImeServisera.Name = "txtImeServisera";
             this.txtImeServisera.Size = new System.Drawing.Size(146, 20);
             this.txtImeServisera.TabIndex = 3;
+            this.txtImeServisera.TextChanged += new System.EventHandler(this.txtImeServisera_TextChanged);
             // 
             // btnPrikazi
             // 
@@ -192,31 +222,6 @@ namespace SBT.WinUI.Servisi
             this.dgvServisi.Size = new System.Drawing.Size(952, 351);
             this.dgvServisi.TabIndex = 0;
             this.dgvServisi.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvServisi_CellMouseDoubleClick);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(683, 32);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(185, 20);
-            this.dateTimePicker1.TabIndex = 14;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(659, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Datum servisa";
-            // 
-            // checkBox
-            // 
-            this.checkBox.AutoSize = true;
-            this.checkBox.Location = new System.Drawing.Point(662, 35);
-            this.checkBox.Name = "checkBox";
-            this.checkBox.Size = new System.Drawing.Size(15, 14);
-            this.checkBox.TabIndex = 16;
-            this.checkBox.UseVisualStyleBackColor = true;
             // 
             // servisId
             // 
@@ -315,7 +320,7 @@ namespace SBT.WinUI.Servisi
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmServisi";
-            this.Text = "frmServisi";
+            this.Text = "Servisi";
             this.Load += new System.EventHandler(this.frmServisi_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -236,7 +236,7 @@ namespace SBT.WinUI.Korisnici
             this.Controls.Add(this.labelNaziv);
             this.Controls.Add(this.textKorisnickoIme);
             this.Name = "frmKorisniciDetalji";
-            this.Text = "frmKorisniciDetalji";
+            this.Text = "Korisnici Detalji";
             this.Load += new System.EventHandler(this.frmKorisniciDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

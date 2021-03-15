@@ -221,5 +221,16 @@ namespace SBT.WebAPI.Services
             _context.SaveChanges();
             return _mapper.Map<KorisnikModel>(entity);
         }
+
+        public List<KorisniciModel> GetServiseriList()
+        {
+            var ko = _context.KorisniciUloge.Include(k=>k.Korisnik).Where(ko => ko.Uloga.Naziv == "serviser").ToList();
+            List<KorisniciModel> km = new List<KorisniciModel>();
+            foreach (var item in ko)
+            {
+                km.Add(_mapper.Map<Model.KorisniciModel>(item.Korisnik));
+            }
+            return km;
+        }
     }
 }

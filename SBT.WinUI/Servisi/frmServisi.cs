@@ -49,5 +49,30 @@ namespace SBT.WinUI.Servisi
             frmServisiDetalji frm = new frmServisiDetalji(int.Parse(id.ToString()));
             frm.Show();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtImeServisera_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

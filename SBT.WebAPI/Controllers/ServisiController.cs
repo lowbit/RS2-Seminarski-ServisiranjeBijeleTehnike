@@ -32,5 +32,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.GetServisiList(request);
         }
+        [HttpGet("{id}")]
+        public Model.ServisModel GetById(int id)
+        {
+            return _service.GetById(id);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SBT.WinUI
 {
-    partial class frmIndex
+    partial class Home
     {
         /// <summary>
         /// Required designer variable.
@@ -38,10 +38,10 @@
             this.noviUređajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servisiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pretragaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.noviIzvjestajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.noviIzvjestajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,14 +70,14 @@
             // pretragaToolStripMenuItem
             // 
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
-            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.pretragaToolStripMenuItem.Text = "Pretraga";
             this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click);
             // 
             // noviKorisnikToolStripMenuItem
             // 
             this.noviKorisnikToolStripMenuItem.Name = "noviKorisnikToolStripMenuItem";
-            this.noviKorisnikToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noviKorisnikToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.noviKorisnikToolStripMenuItem.Text = "Novi korisnik";
             this.noviKorisnikToolStripMenuItem.Click += new System.EventHandler(this.noviKorisnikToolStripMenuItem_Click);
             // 
@@ -93,14 +93,14 @@
             // pretragaToolStripMenuItem1
             // 
             this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
             this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaToolStripMenuItem1_Click);
             // 
             // noviUređajToolStripMenuItem
             // 
             this.noviUređajToolStripMenuItem.Name = "noviUređajToolStripMenuItem";
-            this.noviUređajToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noviUređajToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.noviUređajToolStripMenuItem.Text = "Novi uređaj";
             this.noviUređajToolStripMenuItem.Click += new System.EventHandler(this.noviUređajToolStripMenuItem_Click);
             // 
@@ -116,9 +116,16 @@
             // pretragaToolStripMenuItem2
             // 
             this.pretragaToolStripMenuItem2.Name = "pretragaToolStripMenuItem2";
-            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.pretragaToolStripMenuItem2.Size = new System.Drawing.Size(143, 22);
             this.pretragaToolStripMenuItem2.Text = "Pretraga";
             this.pretragaToolStripMenuItem2.Click += new System.EventHandler(this.pretragaToolStripMenuItem2_Click);
+            // 
+            // noviIzvjestajToolStripMenuItem
+            // 
+            this.noviIzvjestajToolStripMenuItem.Name = "noviIzvjestajToolStripMenuItem";
+            this.noviIzvjestajToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.noviIzvjestajToolStripMenuItem.Text = "Novi Izvjestaj";
+            this.noviIzvjestajToolStripMenuItem.Click += new System.EventHandler(this.noviIzvjestajToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -136,14 +143,7 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // noviIzvjestajToolStripMenuItem
-            // 
-            this.noviIzvjestajToolStripMenuItem.Name = "noviIzvjestajToolStripMenuItem";
-            this.noviIzvjestajToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.noviIzvjestajToolStripMenuItem.Text = "Novi Izvjestaj";
-            this.noviIzvjestajToolStripMenuItem.Click += new System.EventHandler(this.noviIzvjestajToolStripMenuItem_Click);
-            // 
-            // frmIndex
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,8 +152,8 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "frmIndex";
-            this.Text = "frmIndex";
+            this.Name = "Home";
+            this.Text = "Home";
             this.Load += new System.EventHandler(this.frmIndex_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();

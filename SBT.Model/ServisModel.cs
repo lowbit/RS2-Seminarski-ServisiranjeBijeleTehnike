@@ -17,5 +17,6 @@ namespace SBT.Model
         public string KlijentIme { get; set; }
         public string TipPlacanjaNaziv { get; set; }
         public string TipDostaveNaziv { get; set; }
+        public ICollection<StanjeServisaModel> StanjeServisa { get; set; }
     }
 }

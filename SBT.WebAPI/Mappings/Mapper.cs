@@ -33,7 +33,7 @@ namespace SBT.WebAPI.Mappings
             CreateMap<Database.TipPlacanja, Model.TipPlacanjaModel>().ReverseMap();
             CreateMap<Database.TipDostave, Model.TipDostaveModel>().ReverseMap();
             CreateMap<Database.StatusServisa, Model.StatusServisaModel>().ReverseMap();
-            CreateMap<Database.StanjeServisa, Model.StanjeServisaModel>().ReverseMap();
+            CreateMap<Database.StanjeServisa, Model.StanjeServisaModel>().ForMember(dest => dest.TrenutniStatus, opt => opt.MapFrom(src => src.TrenutniStatus.Naziv));
         }
     }
 }

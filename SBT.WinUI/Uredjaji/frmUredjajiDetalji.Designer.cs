@@ -171,7 +171,7 @@
             this.Controls.Add(this.textOpis);
             this.Controls.Add(this.textNaziv);
             this.Name = "frmUredjajiDetalji";
-            this.Text = "frmUredjajiDetalji";
+            this.Text = "Uredjaji Detalji";
             this.Load += new System.EventHandler(this.frmUredjajiDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

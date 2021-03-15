@@ -19,6 +19,17 @@ namespace SBT.WebAPI.Services
             _context = context;
             _mapper = mapper;
         }
+
+        public ServisModel GetById(int id)
+        {
+
+            var entity = _context.Servisi.Include("Serviser").Include("Klijent").Include("Status")
+                            .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").Include("StanjeServisa").Include("StanjeServisa.TrenutniStatus").Where(x => x.ServisId == id).FirstOrDefault();
+
+
+            return _mapper.Map<Model.ServisModel>(entity);
+        }
+
         public List<Model.ServisModel> GetList()
         {
             var list = _context.Servisi.ToList();
