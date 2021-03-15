@@ -64,7 +64,8 @@ namespace SBT.WebAPI
                         new string[] {}
                     }
                 });
-                }); 
+                });
+            services.AddTransient<Seeder>();
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

@@ -42,6 +42,7 @@ namespace SBT.WebAPI.Database
         public virtual DbSet<Proizvodjaci> Proizvodjaci { get; set; }
         public virtual DbSet<Servisi> Servisi { get; set; }
         public virtual DbSet<StanjeServisa> StanjeServisa { get; set; }
+        public virtual DbSet<StatusServisa> StatusServisa { get; set; }
         public virtual DbSet<SlikeUredjaja> SlikeUredjaja { get; set; }
         public virtual DbSet<TipDostave> TipDostave { get; set; }
         public virtual DbSet<TipPlacanja> TipPlacanja { get; set; }
