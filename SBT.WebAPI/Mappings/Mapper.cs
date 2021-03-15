@@ -30,6 +30,7 @@ namespace SBT.WebAPI.Mappings
                 .ForMember(dest => dest.TipDostaveNaziv, opt => opt.MapFrom(src => src.TipDostave.Naziv))
                 .ForMember(dest => dest.TipPlacanjaNaziv, opt => opt.MapFrom(src => src.TipPlacanja.Naziv))
                 .ForMember(dest => dest.UredjajNaziv, opt => opt.MapFrom(src => src.Uredjaj.Naziv));
+            CreateMap<Database.Servisi, Model.Requests.ServisInsertRequest>().ReverseMap();
             CreateMap<Database.TipPlacanja, Model.TipPlacanjaModel>().ReverseMap();
             CreateMap<Database.TipDostave, Model.TipDostaveModel>().ReverseMap();
             CreateMap<Database.StatusServisa, Model.StatusServisaModel>().ReverseMap();

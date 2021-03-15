@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SBT.Model;
 using SBT.Model.Requests;
 using SBT.WebAPI.Database;
+using SBT.WebAPI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,21 @@ namespace SBT.WebAPI.Services
         {
             _context = context;
             _mapper = mapper;
+        }
+
+        public ServisModel AddServis(ServisInsertRequest request)
+        {
+            var entity = _mapper.Map<Database.Servisi>(request);
+            Recommender recommender = new Recommender(_context, _mapper);
+            var dodjeljeniServiser = recommender.GetServisera(request.UredjajId);
+            if (dodjeljeniServiser == null)
+            {
+                dodjeljeniServiser = _context.KorisniciUloge.Include(k => k.Korisnik).Where(ko => ko.Uloga.Naziv == "serviser").Select(k=>k.Korisnik).FirstOrDefault();
+            }
+            entity.ServiserId = dodjeljeniServiser.KorisnikId;
+            _context.Servisi.Add(entity);
+            _context.SaveChanges();
+            return _mapper.Map<ServisModel>(entity);
         }
 
         public ServisModel GetById(int id)

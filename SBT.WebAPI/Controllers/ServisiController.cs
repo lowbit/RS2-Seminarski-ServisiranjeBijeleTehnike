@@ -37,5 +37,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.GetById(id);
         }
+        [HttpPost("AddServis")]
+        public ActionResult<Model.ServisModel> AddServis(Model.Requests.ServisInsertRequest request)
+        {
+            return _service.AddServis(request);
+        }
     }
 }
