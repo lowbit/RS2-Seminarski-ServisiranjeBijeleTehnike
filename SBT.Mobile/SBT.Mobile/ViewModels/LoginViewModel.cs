@@ -49,6 +49,7 @@ namespace SBT.Mobile.ViewModels
                             userIsServiser = true;
                             APIService.Username = Username;
                             APIService.Password = Password;
+                            APIService.KorisnikId = item.KorisnikId;
                         } else if(item.Uloga.Naziv == "korisnik")
                         {
                             userIsKorisnik = true;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SBT.Mobile.ViewModels;
+using SBT.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -12,33 +14,25 @@ namespace SBT.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ServisiServiserPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
+        private ServisiServiserViewModel model = null;
 
         public ServisiServiserPage()
         {
             InitializeComponent();
-
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
-
-            MyListView.ItemsSource = Items;
+            BindingContext = model = new ServisiServiserViewModel();
         }
 
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        protected async override void OnAppearing()
         {
-            if (e.Item == null)
-                return;
+            base.OnAppearing();
+            await model.Init();
+        }
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+        private async void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as ServisModel;
 
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            //await Navigation.PushAsync(new ServisiServiserDetailPage(item));
         }
     }
 }

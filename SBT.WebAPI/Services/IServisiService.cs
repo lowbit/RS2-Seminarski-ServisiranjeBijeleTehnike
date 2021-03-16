@@ -12,5 +12,6 @@ namespace SBT.WebAPI.Services
         List<Model.ServisModel> GetServisiList(Model.Requests.SearchRequestServis request);
         Model.ServisModel GetById(int id);
         Model.ServisModel AddServis(Model.Requests.ServisInsertRequest request);
+        List<Model.ServisModel> GetServisiByUser(int id);
     }
 }

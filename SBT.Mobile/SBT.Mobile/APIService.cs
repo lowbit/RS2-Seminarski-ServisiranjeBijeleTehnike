@@ -12,6 +12,7 @@ namespace SBT.Mobile
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
+        public static int KorisnikId { get; set; }
 
         private string _route = null;
 
@@ -65,8 +66,8 @@ namespace SBT.Mobile
 
             if (param != null)
             {
-                url += "?";
-                url += await param.ToQueryString();
+                url += "/";
+                url += param;
             }
             var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             return result;

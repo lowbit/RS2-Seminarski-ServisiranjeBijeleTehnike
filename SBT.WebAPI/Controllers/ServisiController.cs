@@ -42,5 +42,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.AddServis(request);
         }
+        [HttpGet("GetServisiByUser/{id}")]
+        public ActionResult<List<Model.ServisModel>> GetServisiByUser(int id)
+        {
+            return _service.GetServisiByUser(id);
+        }
     }
 }

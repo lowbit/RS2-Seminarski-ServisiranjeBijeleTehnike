@@ -52,6 +52,45 @@ namespace SBT.WebAPI.Services
             return _mapper.Map<List<Model.ServisModel>>(list);
         }
 
+        public List<ServisModel> GetServisiByUser(int id)
+        {
+            var query = _context.Servisi.Include("Serviser").Include("Klijent").Include("Status")
+                            .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").AsQueryable();
+            var isKorisnik = false;
+            var isServiser = false;
+            if (id>0)
+            {
+                var korisnik = _context.Korisnici.Include("KorisniciUloge.Uloga").Where(x=>x.KorisnikId == id).FirstOrDefault();
+                if (korisnik != null)
+                {
+                    foreach (var item in korisnik.KorisniciUloge)
+                    {
+                        if(item.Uloga.Naziv == "korisnik")
+                        {
+                            isKorisnik = true;
+                        } 
+                        if (item.Uloga.Naziv == "serviser")
+                        {
+                            isServiser = true;
+                        }
+                    }
+                }
+                if (isServiser)
+                {
+                    query = query.Where(u => u.ServiserId == id);
+                    var list = query.ToList();
+                    return _mapper.Map<List<Model.ServisModel>>(list);
+                } 
+                else if (isKorisnik)
+                {
+                    query = query.Where(u => u.KlijentId == id);
+                    var list = query.ToList();
+                    return _mapper.Map<List<Model.ServisModel>>(list);
+                }
+            }
+            return null;
+        }
+
         public List<ServisModel> GetServisiList(SearchRequestServis request)
         {
             var query = _context.Servisi.Include("Serviser").Include("Klijent").Include("Status")
