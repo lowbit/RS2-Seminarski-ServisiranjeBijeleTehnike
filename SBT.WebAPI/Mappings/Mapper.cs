@@ -29,7 +29,8 @@ namespace SBT.WebAPI.Mappings
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.Naziv))
                 .ForMember(dest => dest.TipDostaveNaziv, opt => opt.MapFrom(src => src.TipDostave.Naziv))
                 .ForMember(dest => dest.TipPlacanjaNaziv, opt => opt.MapFrom(src => src.TipPlacanja.Naziv))
-                .ForMember(dest => dest.UredjajNaziv, opt => opt.MapFrom(src => src.Uredjaj.Naziv));
+                .ForMember(dest => dest.UredjajNaziv, opt => opt.MapFrom(src => src.Uredjaj.Naziv))
+                .ForMember(dest => dest.UredjajSlika, opt => opt.MapFrom(src => src.Uredjaj.SlikeUredjaja.Count>0? src.Uredjaj.SlikeUredjaja[0].Slika:null));
             CreateMap<Database.Servisi, Model.Requests.ServisInsertRequest>().ReverseMap();
             CreateMap<Database.TipPlacanja, Model.TipPlacanjaModel>().ReverseMap();
             CreateMap<Database.TipDostave, Model.TipDostaveModel>().ReverseMap();

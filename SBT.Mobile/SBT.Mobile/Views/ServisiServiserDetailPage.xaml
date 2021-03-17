@@ -1,12 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:SBT.Mobile.ViewModels" xmlns:converters="clr-namespace:SBT.Mobile.Converters"
              x:Class="SBT.Mobile.Views.ServisiServiserDetailPage">
+    <ContentPage.BindingContext>
+        <viewmodels:ServisiServiserDetailViewModel></viewmodels:ServisiServiserDetailViewModel>
+    </ContentPage.BindingContext><ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="Start" VerticalOptions="Start" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="0" Grid.Column="0">
+                <StackLayout>
+                    <Image Source="{Binding Servis.UredjajSlika, Converter={StaticResource imgConv}}"></Image>
+                </StackLayout>
+                <Label Text="Uređaj:" TextColor="DarkBlue"></Label>
+                <Label Text="{Binding Servis.UredjajNaziv}"></Label>
+                <Label Text="Datum servisa:" TextColor="DarkBlue"></Label>
+                <Label Text="{Binding Servis.DatumServisa}"></Label>
+                <Label Text="Cijena Servisa:" TextColor="DarkBlue"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Servis.Cijena}"></Label>
+                    <Label Text="KM"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <!--<Entry Text="{Binding Servis.OcjenaServisa}" Keyboard="Numeric"></Entry>-->
+                    <!--<Button Text="+1" Command="{Binding PovecajKolicinuCommand}"></Button>-->
+                </StackLayout>
+
+            </StackLayout>
+            <!--<StackLayout Grid.Row="1" Grid.Column="0">
+                <Image Source="cart.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NaruciCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

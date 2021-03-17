@@ -40,7 +40,7 @@ namespace SBT.WebAPI.Services
         {
 
             var entity = _context.Servisi.Include("Serviser").Include("Klijent").Include("Status")
-                            .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").Include("StanjeServisa").Include("StanjeServisa.TrenutniStatus").Where(x => x.ServisId == id).FirstOrDefault();
+                            .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").Include("StanjeServisa").Include("StanjeServisa.TrenutniStatus").Include("Uredjaj.SlikeUredjaja").Where(x => x.ServisId == id).FirstOrDefault();
 
 
             return _mapper.Map<Model.ServisModel>(entity);

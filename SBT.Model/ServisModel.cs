@@ -18,5 +18,6 @@ namespace SBT.Model
         public string TipPlacanjaNaziv { get; set; }
         public string TipDostaveNaziv { get; set; }
         public ICollection<StanjeServisaModel> StanjeServisa { get; set; }
+        public byte[] UredjajSlika { get; set; }
     }
 }

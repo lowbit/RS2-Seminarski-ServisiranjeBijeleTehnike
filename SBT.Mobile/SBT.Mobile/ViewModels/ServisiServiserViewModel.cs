@@ -46,7 +46,8 @@ namespace SBT.Mobile.ViewModels
             var list = await _servisiService.GetParam<IEnumerable<ServisModel>>("GetServisiByUser", req);
             if (VrsteStatusaList.Count < 1)
             {
-                var listaStatusa = await _servisiService.Get<IEnumerable<StatusServisaModel>>("GetVrsteStatusa"); VrsteStatusaList.Clear();
+                var listaStatusa = await _servisiService.Get<IEnumerable<StatusServisaModel>>("GetVrsteStatusa");
+                VrsteStatusaList.Clear();
                 VrsteStatusaList.Add(new StatusServisaModel { StatusServisaId = 0, Naziv = "(SVE)"});
                 foreach (var item in listaStatusa)
                 {

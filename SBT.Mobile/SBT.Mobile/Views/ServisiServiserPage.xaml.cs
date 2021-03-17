@@ -32,7 +32,7 @@ namespace SBT.Mobile.Views
         {
             var item = e.SelectedItem as ServisModel;
 
-            await Navigation.PushAsync(new ServisiServiserDetailPage());
+            await Navigation.PushAsync(new ServisiServiserDetailPage(item.ServisId));
         }
     }
 }
