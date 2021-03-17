@@ -66,8 +66,8 @@ namespace SBT.Mobile
 
             if (param != null)
             {
-                url += "/";
-                url += param;
+                url += "?";
+                url += await param.ToQueryString();
             }
             var result = await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             return result;

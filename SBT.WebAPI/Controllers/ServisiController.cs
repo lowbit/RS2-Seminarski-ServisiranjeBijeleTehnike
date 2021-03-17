@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SBT.Model;
+using SBT.Model.Requests;
 using SBT.WebAPI.Services;
 
 namespace SBT.WebAPI.Controllers
@@ -42,10 +43,15 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.AddServis(request);
         }
-        [HttpGet("GetServisiByUser/{id}")]
-        public ActionResult<List<Model.ServisModel>> GetServisiByUser(int id)
+        [HttpGet("GetServisiByUser")]
+        public ActionResult<List<Model.ServisModel>> GetServisiByUser([FromQuery]SearchMobileServiceRequest request)
         {
-            return _service.GetServisiByUser(id);
+            return _service.GetServisiByUser(request);
+        }
+        [HttpGet("GetVrsteStatusa")]
+        public ActionResult<List<Model.StatusServisaModel>> GetVrsteStatusa()
+        {
+            return _service.GetVrsteStatusa();
         }
     }
 }

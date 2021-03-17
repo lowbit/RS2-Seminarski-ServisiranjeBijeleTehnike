@@ -52,15 +52,19 @@ namespace SBT.WebAPI.Services
             return _mapper.Map<List<Model.ServisModel>>(list);
         }
 
-        public List<ServisModel> GetServisiByUser(int id)
+        public List<ServisModel> GetServisiByUser(SearchMobileServiceRequest request)
         {
             var query = _context.Servisi.Include("Serviser").Include("Klijent").Include("Status")
                             .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").AsQueryable();
             var isKorisnik = false;
             var isServiser = false;
-            if (id>0)
+            if(request.VrstaStatusaId > 0)
             {
-                var korisnik = _context.Korisnici.Include("KorisniciUloge.Uloga").Where(x=>x.KorisnikId == id).FirstOrDefault();
+                query = query.Where(x => x.StatusServisaId == request.VrstaStatusaId);
+            }
+            if (request.KorisnikId> 0)
+            {
+                var korisnik = _context.Korisnici.Include("KorisniciUloge.Uloga").Where(x=>x.KorisnikId == request.KorisnikId).FirstOrDefault();
                 if (korisnik != null)
                 {
                     foreach (var item in korisnik.KorisniciUloge)
@@ -77,13 +81,13 @@ namespace SBT.WebAPI.Services
                 }
                 if (isServiser)
                 {
-                    query = query.Where(u => u.ServiserId == id);
+                    query = query.Where(u => u.ServiserId == request.KorisnikId);
                     var list = query.ToList();
                     return _mapper.Map<List<Model.ServisModel>>(list);
                 } 
                 else if (isKorisnik)
                 {
-                    query = query.Where(u => u.KlijentId == id);
+                    query = query.Where(u => u.KlijentId == request.KorisnikId);
                     var list = query.ToList();
                     return _mapper.Map<List<Model.ServisModel>>(list);
                 }
@@ -117,6 +121,12 @@ namespace SBT.WebAPI.Services
             }
             var list = query.ToList();
             return _mapper.Map<List<Model.ServisModel>>(list);
+        }
+
+        public List<StatusServisaModel> GetVrsteStatusa()
+        {
+            var statusi = _context.StatusServisa.OrderBy(x => x.StatusServisaId).ToList();
+            return _mapper.Map<List<Model.StatusServisaModel>>(statusi);
         }
     }
 }
