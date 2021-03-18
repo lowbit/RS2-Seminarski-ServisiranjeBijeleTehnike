@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:SBT.Mobile.ViewModels" xmlns:converters="clr-namespace:SBT.Mobile.Converters"
-             x:Class="SBT.Mobile.Views.ServisiServiserDetailPage">
+             x:Class="SBT.Mobile.Views.ServisiServiserDetailPage"
+             Title="Detalji Servisa">
     <ContentPage.BindingContext>
         <viewmodels:ServisiServiserDetailViewModel></viewmodels:ServisiServiserDetailViewModel>
-    </ContentPage.BindingContext><ContentPage.Resources>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
         </ResourceDictionary>

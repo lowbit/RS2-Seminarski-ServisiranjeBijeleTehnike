@@ -1,4 +1,5 @@
-﻿using SBT.Model;
+﻿using SBT.Mobile.Views;
+using SBT.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,7 +42,7 @@ namespace SBT.Mobile.ViewModels
         }
         async Task UpdateStanje()
         {
-            await Application.Current.MainPage.DisplayAlert("Test", "Test", "OK");
+            await Application.Current.MainPage.Navigation.PushAsync(new UpdateStanjeServisaServiserPage(Servis.ServisId));
         }
     }
 }

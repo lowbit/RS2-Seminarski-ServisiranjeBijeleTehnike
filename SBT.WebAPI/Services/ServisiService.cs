@@ -40,9 +40,9 @@ namespace SBT.WebAPI.Services
         {
 
             var entity = _context.Servisi.Include("Serviser").Include("Klijent").Include("Status")
-                            .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").Include("StanjeServisa").Include("StanjeServisa.TrenutniStatus").Include("Uredjaj.SlikeUredjaja").Where(x => x.ServisId == id).FirstOrDefault();
+                            .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").Include("StanjeServisa.TrenutniStatus").Include("Uredjaj.SlikeUredjaja").Where(x => x.ServisId == id).FirstOrDefault();
 
-
+            entity.StanjeServisa = _context.StanjeServisa.Where(x => x.ServisId == id).OrderByDescending(x => x.StanjeServisaId).ToList();
             return _mapper.Map<Model.ServisModel>(entity);
         }
 
@@ -127,6 +127,31 @@ namespace SBT.WebAPI.Services
         {
             var statusi = _context.StatusServisa.OrderBy(x => x.StatusServisaId).ToList();
             return _mapper.Map<List<Model.StatusServisaModel>>(statusi);
+        }
+
+        public StanjeServisaInsertRequest StanjeServisaAdd(StanjeServisaInsertRequest request)
+        {
+            var entity = new StanjeServisa();
+            entity.Azurirano = request.Azurirano;
+            entity.Napomena = request.Napomena;
+            entity.ServisId = request.ServisId;
+            var statusServisa = _context.StatusServisa.Where(x => x.Naziv == request.TrenutniStatus).FirstOrDefault();
+            entity.StatusServisaId = statusServisa.StatusServisaId;
+            _context.StanjeServisa.Add(entity);
+            _context.SaveChanges();
+            var servis = _context.Servisi.Find(request.ServisId);
+            if (request.Ocijena != 0)
+            {
+                servis.OcjenaServisa = request.Ocijena;
+            }
+            if (request.Cijena != 0)
+            {
+                servis.Cijena = request.Cijena;
+            }
+            servis.StatusServisaId = statusServisa.StatusServisaId;
+            _context.Servisi.Update(servis);
+            _context.SaveChanges();
+            return request;
         }
     }
 }

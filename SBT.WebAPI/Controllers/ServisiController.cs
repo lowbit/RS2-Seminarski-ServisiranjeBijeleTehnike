@@ -53,5 +53,10 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.GetVrsteStatusa();
         }
+        [HttpPost("StanjeServisaAdd")]
+        public ActionResult<StanjeServisaInsertRequest> StanjeServisaAdd(StanjeServisaInsertRequest request)
+        {
+            return _service.StanjeServisaAdd(request);
+        }
     }
 }
