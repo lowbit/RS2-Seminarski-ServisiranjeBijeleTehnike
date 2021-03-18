@@ -63,7 +63,7 @@
                         <Label Text="Status Servisa" HorizontalOptions="Center"></Label>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue">
+                <StackLayout BackgroundColor="AliceBlue" MinimumHeightRequest="120" >
                     <ListView ItemsSource="{Binding Servis.StanjeServisa}" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -93,7 +93,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                <Button Text="Update stanje"></Button>
+                <Button Text="Update stanje" Command="{Binding UpdateStanjeCommand}"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

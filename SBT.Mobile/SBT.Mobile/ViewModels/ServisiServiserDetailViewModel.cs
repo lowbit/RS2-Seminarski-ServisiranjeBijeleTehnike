@@ -17,6 +17,7 @@ namespace SBT.Mobile.ViewModels
         public ServisiServiserDetailViewModel(int id)
         {
             InitCommand = new Command(async () => await Init(id));
+            UpdateStanjeCommand = new Command(async () => await UpdateStanje());
         }
         ServisModel _servis = null;
         public ServisModel Servis {
@@ -32,10 +33,15 @@ namespace SBT.Mobile.ViewModels
             }
         }
         public ICommand InitCommand { get; set; }
+        public ICommand UpdateStanjeCommand { get; set; }
         public async Task Init(int id)
         {
             var item = await _servisiService.GetById<ServisModel>(id);
             Servis = item;
+        }
+        async Task UpdateStanje()
+        {
+            await Application.Current.MainPage.DisplayAlert("Test", "Test", "OK");
         }
     }
 }
