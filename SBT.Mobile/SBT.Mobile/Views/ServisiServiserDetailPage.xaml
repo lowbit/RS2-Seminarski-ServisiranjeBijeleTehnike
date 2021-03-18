@@ -19,31 +19,82 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Row="0" Grid.Column="0">
-                <StackLayout>
-                    <Image Source="{Binding Servis.UredjajSlika, Converter={StaticResource imgConv}}"></Image>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <StackLayout HeightRequest="150" WidthRequest="200">
+                        <Label Text="Uređaj:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.UredjajNaziv}"></Label>
+                        <Label Text="Datum servisa:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.DatumServisa}"></Label>
+                        <Label Text="Opis servisa:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.Opis}"></Label>
+                    </StackLayout>
+                    <StackLayout HeightRequest="150" WidthRequest="200" >
+                        <Image Source="{Binding Servis.UredjajSlika, Converter={StaticResource imgConv}}" HeightRequest="150"></Image>
+                    </StackLayout>
                 </StackLayout>
-                <Label Text="Uređaj:" TextColor="DarkBlue"></Label>
-                <Label Text="{Binding Servis.UredjajNaziv}"></Label>
-                <Label Text="Datum servisa:" TextColor="DarkBlue"></Label>
-                <Label Text="{Binding Servis.DatumServisa}"></Label>
-                <Label Text="Cijena Servisa:" TextColor="DarkBlue"></Label>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Servis.Cijena}"></Label>
-                    <Label Text="KM"></Label>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <StackLayout HeightRequest="150" WidthRequest="200">
+                        <Label Text="Klijent:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.KlijentIme}"></Label>
+                        <Label Text="Tip Placanja:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.TipPlacanjaNaziv}"></Label>
+                        <Label Text="Cijena Servisa:" TextColor="DarkBlue"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Servis.Cijena}"></Label>
+                            <Label Text="KM"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout HeightRequest="150" WidthRequest="200">
+                        <Label Text="Serviser:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.ServiserIme}"></Label>
+                        <Label Text="Tip Dostave:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.TipDostaveNaziv}"></Label>
+                        <Label Text="Ocjena za servis:" TextColor="DarkBlue"></Label>
+                        <Label Text="{Binding Servis.OcjenaServisa}"></Label>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <!--<Entry Text="{Binding Servis.OcjenaServisa}" Keyboard="Numeric"></Entry>-->
-                    <!--<Button Text="+1" Command="{Binding PovecajKolicinuCommand}"></Button>-->
-                </StackLayout>
+                <Label Text="Stanje Servisa" TextColor="DarkBlue" HorizontalOptions="Center"></Label>
 
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout WidthRequest="200">
+                        <Label Text="Napomena" HorizontalOptions="Center"></Label>
+                    </StackLayout>
+                    <StackLayout WidthRequest="200">
+                        <Label Text="Status Servisa" HorizontalOptions="Center"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue">
+                    <ListView ItemsSource="{Binding Servis.StanjeServisa}" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10" Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout WidthRequest="200">
+                                                <Label Text="{Binding Napomena}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="12" />
+                                            </StackLayout>
+                                            <Label Text="{Binding TrenutniStatus}"
+                                            LineBreakMode="NoWrap"
+                                            Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="12" HorizontalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="{Binding Azurirano}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{DynamicResource ListItemTextStyle}" 
+                                            FontSize="13"  HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Button Text="Update stanje"></Button>
             </StackLayout>
-            <!--<StackLayout Grid.Row="1" Grid.Column="0">
-                <Image Source="cart.png">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NaruciCommand}"></TapGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
