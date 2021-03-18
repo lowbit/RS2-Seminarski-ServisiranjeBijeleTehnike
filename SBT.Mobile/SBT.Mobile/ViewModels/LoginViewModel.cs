@@ -55,6 +55,7 @@ namespace SBT.Mobile.ViewModels
                             userIsKorisnik = true;
                             APIService.Username = Username;
                             APIService.Password = Password;
+                            APIService.KorisnikId = item.KorisnikId;
                         }
                     }
                     if (userIsServiser)

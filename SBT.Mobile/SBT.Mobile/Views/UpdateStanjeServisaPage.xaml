@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:SBT.Mobile.ViewModels"
+             x:Class="SBT.Mobile.Views.UpdateStanjeServisaPage"
+             Title="Update Stanje Servisa">
+
+    <ContentPage.BindingContext>
+        <viewmodels:UpdateStanjeServisaViewModel></viewmodels:UpdateStanjeServisaViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Napomena"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry Text="{Binding Napomena}"></Entry>
+            <Label Text="Ocijena Servisa"
+                HorizontalOptions="CenterAndExpand"/>
+            <Entry Text="{Binding Ocijena}" Keyboard="Numeric"></Entry>
+            <Button Text="Update Status" Command="{Binding UpdateStatusCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

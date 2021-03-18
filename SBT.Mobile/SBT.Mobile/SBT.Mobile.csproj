@@ -20,6 +20,15 @@
     <Compile Update="AppShellServiser.xaml.cs">
       <DependentUpon>AppShellServiser.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ServisiPage.xaml.cs">
+      <DependentUpon>ServisiPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ServisiDetailPage.xaml.cs">
+      <DependentUpon>ServisiDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateStanjeServisaPage.xaml.cs">
+      <DependentUpon>UpdateStanjeServisaPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
