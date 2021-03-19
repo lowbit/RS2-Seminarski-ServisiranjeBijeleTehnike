@@ -293,7 +293,7 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Zahtjevi", "Zahtjev")
                         .WithMany()
                         .HasForeignKey("ZahtjevId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -302,7 +302,7 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Uredjaji", "Uredjaj")
                         .WithMany("SlikeUredjaja")
                         .HasForeignKey("UredjajId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -311,13 +311,13 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Kategorije", "Kategorija")
                         .WithMany("Uredjaji")
                         .HasForeignKey("KategorijaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.Proizvodjaci", "Proizvodjac")
                         .WithMany()
                         .HasForeignKey("ProizvodjacId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -326,19 +326,19 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.TipDostave", "TipDostave")
                         .WithMany()
                         .HasForeignKey("TipDostaveId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.TipPlacanja", "TipPlacanja")
                         .WithMany()
                         .HasForeignKey("TipPlacanjaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.Uredjaji", "Uredjaj")
                         .WithMany()
                         .HasForeignKey("UredjajId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
