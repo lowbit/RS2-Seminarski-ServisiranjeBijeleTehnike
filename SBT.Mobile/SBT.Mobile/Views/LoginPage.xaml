@@ -10,8 +10,9 @@
             <Label Text="Korisničko ime" />
             <Entry Text="{Binding Username}"></Entry>
             <Label Text="Password" />
-            <Entry Text="{Binding Password}"></Entry>
+            <Entry Text="{Binding Password}" IsPassword="True"></Entry>
             <Button Command="{Binding LoginCommand}" Text="Login"></Button>
+            <Label Text="Nemate korisnički račun ?" HorizontalOptions="Center"/>
             <Button Command="{Binding RegisterCommand}" Text="Register new User"></Button>
         </StackLayout>
     </ContentPage.Content>

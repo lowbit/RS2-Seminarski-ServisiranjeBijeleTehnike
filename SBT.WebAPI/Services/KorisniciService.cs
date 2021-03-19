@@ -106,7 +106,12 @@ namespace SBT.WebAPI.Services
             _context.Korisnici.Add(entity);
             _context.SaveChanges();
 
-            foreach (var uloga in request.Uloge)
+            var uloge = request.Uloge;
+            if(uloge == null || uloge.Count < 1)
+            {
+                uloge.Add(_context.Uloge.Where(x => x.Naziv == "korisnik").FirstOrDefault().UlogaId);
+            }
+            foreach (var uloga in uloge)
             {
                 Database.KorisniciUloge korisniciUloge = new Database.KorisniciUloge();
                 korisniciUloge.KorisnikId = entity.KorisnikId;

@@ -21,7 +21,10 @@ namespace SBT.Mobile.ViewModels
         public string Username
         {
             get { return _username; }
-            set { SetProperty(ref _username, value); }
+            set 
+            { 
+                SetProperty(ref _username, value);
+            }
         }
         string _password = string.Empty;
         public string Password

@@ -25,7 +25,12 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.Get(request);
         }
-
+        [AllowAnonymous]
+        [HttpPost("Register")]
+        public Model.KorisniciModel Register(KorisniciInsertRequest request)
+        {
+            return _service.Insert(request);
+        }
         [Authorize(Roles = "admin")]
         [HttpPost]
         public Model.KorisniciModel Insert(KorisniciInsertRequest request)

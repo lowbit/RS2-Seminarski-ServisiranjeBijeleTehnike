@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SBT.Mobile.ViewModels"
              x:Class="SBT.Mobile.Views.RegisterPage">
+    <ContentPage.BindingContext>
+        <viewModels:RegisterViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="36">
+            <Label Text="Korisničko ime" />
+            <Entry Text="{Binding request.KorisnickoIme}" ></Entry>
+            <Label Text="Password" />
+            <Entry Text="{Binding request.Password}" IsPassword="True"></Entry>
+            <Label Text="Ponovite Password" />
+            <Entry Text="{Binding request.PasswordPotvrda}" IsPassword="True" ></Entry>
+            <Label Text="Email" />
+            <Entry Text="{Binding request.Email}"></Entry>
+            <Label Text="Ime" />
+            <Entry Text="{Binding request.Ime}"></Entry>
+            <Label Text="Prezime" />
+            <Entry Text="{Binding request.Prezime}"></Entry>
+            <Button Command="{Binding RegisterCommand}" Text="Register"></Button>
+            <Label Text="Imate korisnički račun ?" HorizontalOptions="Center"/>
+            <Button Command="{Binding LoginCommand}" Text="Login"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
