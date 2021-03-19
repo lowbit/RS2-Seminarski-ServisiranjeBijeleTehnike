@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  sql:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB: postgres
+      - POSTGRES_USER: postgres
+      - POSTGRES_PASSWORD: postgres
+    ports:
+      - 1433:1433
+    networks:
+      - appnet
+
+    
+  api:
+    restart: unless-stopped
+    build: .
+    environment:
+      - ConnectionStrings:Default=Server=sql,1433;Database=rs2db;User=postgres;Password=postgres;ConnectRetryCount=0
+    ports:
+      - 64236:80
+    networks:
+      - appnet
+      
+networks:
+  appnet:
+    driver: bridge
