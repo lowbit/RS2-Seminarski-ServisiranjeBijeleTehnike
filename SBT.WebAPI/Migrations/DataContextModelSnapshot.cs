@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SBT.WebAPI.Database;
 
 namespace SBT.WebAPI.Migrations
@@ -15,19 +15,19 @@ namespace SBT.WebAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("SBT.WebAPI.Database.Kategorije", b =>
                 {
                     b.Property<int>("KategorijaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("KategorijaId");
 
@@ -38,32 +38,32 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("KorisnikId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ime")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KorisnickoIme")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LozinkaHash")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LozinkaSalt")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prezime")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Slika")
-                        .HasColumnType("bytea");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool?>("Status")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.HasKey("KorisnikId");
 
@@ -74,17 +74,17 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("KorisnikUlogaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DatumIzmjene")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("KorisnikId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("UlogaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("KorisnikUlogaId");
 
@@ -99,11 +99,11 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("ProizvodjacId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProizvodjacId");
 
@@ -114,38 +114,38 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("ServisId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("Cijena")
-                        .HasColumnType("double precision");
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("DatumServisa")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("KlijentId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("OcjenaServisa")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Opis")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ServiserId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusServisaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("TipDostaveId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("TipPlacanjaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("UredjajId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("ServisId");
 
@@ -168,14 +168,14 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("SlikaUredjajaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Slika")
-                        .HasColumnType("bytea");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("UredjajId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("SlikaUredjajaId");
 
@@ -188,20 +188,20 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("StanjeServisaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Azurirano")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Napomena")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ServisId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusServisaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("StanjeServisaId");
 
@@ -216,11 +216,11 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("StatusServisaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("StatusServisaId");
 
@@ -231,11 +231,11 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("TipDostaveId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TipDostaveId");
 
@@ -246,11 +246,11 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("TipPlacanjaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TipPlacanjaId");
 
@@ -261,14 +261,14 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("UlogaId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Opis")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UlogaId");
 
@@ -279,20 +279,20 @@ namespace SBT.WebAPI.Migrations
                 {
                     b.Property<int>("UredjajId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("KategorijaId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Naziv")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Opis")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProizvodjacId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("UredjajId");
 
@@ -323,37 +323,37 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Korisnici", "Klijent")
                         .WithMany()
                         .HasForeignKey("KlijentId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.Korisnici", "Serviser")
                         .WithMany()
                         .HasForeignKey("ServiserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.StatusServisa", "Status")
                         .WithMany()
                         .HasForeignKey("StatusServisaId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.TipDostave", "TipDostave")
                         .WithMany()
                         .HasForeignKey("TipDostaveId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.TipPlacanja", "TipPlacanja")
                         .WithMany()
                         .HasForeignKey("TipPlacanjaId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.Uredjaji", "Uredjaj")
                         .WithMany()
                         .HasForeignKey("UredjajId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -362,7 +362,7 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Uredjaji", "Uredjaj")
                         .WithMany("SlikeUredjaja")
                         .HasForeignKey("UredjajId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -371,13 +371,13 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Servisi", "Servis")
                         .WithMany("StanjeServisa")
                         .HasForeignKey("ServisId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.StatusServisa", "TrenutniStatus")
                         .WithMany()
                         .HasForeignKey("StatusServisaId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -386,13 +386,13 @@ namespace SBT.WebAPI.Migrations
                     b.HasOne("SBT.WebAPI.Database.Kategorije", "Kategorija")
                         .WithMany("Uredjaji")
                         .HasForeignKey("KategorijaId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SBT.WebAPI.Database.Proizvodjaci", "Proizvodjac")
                         .WithMany()
                         .HasForeignKey("ProizvodjacId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

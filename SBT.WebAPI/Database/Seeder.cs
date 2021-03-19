@@ -106,17 +106,17 @@ namespace SBT.WebAPI.Database
                 _context.SlikeUredjaja.AddRange(
                         new SlikeUredjaja
                         {
-                            Slika = ReadFile("Images/bekoFrizider.png"),
+                            Slika = File.ReadAllBytes("Images/bekoFrizider.png"),
                             UredjajId = uredjaji[0].UredjajId
                         },
                         new SlikeUredjaja
                         {
-                            Slika = ReadFile("Images/gorenjeGrijalica.png"),
+                            Slika = File.ReadAllBytes("Images/gorenjeGrijalica.png"),
                             UredjajId = uredjaji[1].UredjajId
                         },
                         new SlikeUredjaja
                         {
-                            Slika = ReadFile("Images/candyMasina.png"),
+                            Slika = File.ReadAllBytes("Images/candyMasina.png"),
                             UredjajId = uredjaji[2].UredjajId
                         }
                     );
@@ -169,7 +169,7 @@ namespace SBT.WebAPI.Database
                             KorisnickoIme = "serviser",
                             LozinkaHash = "07ZLn15vrxFMThX5w2QCKfhnHlA=",
                             LozinkaSalt = "0pBhY4NHGeGcNJdhOZYyUQ==",
-                            Slika = ReadFile("Images/user2.png"),
+                            Slika = File.ReadAllBytes("Images/user2.png"),
                         }, new Korisnici
                         {
                             Ime = "Rijad",
@@ -178,7 +178,7 @@ namespace SBT.WebAPI.Database
                             KorisnickoIme = "desktop",
                             LozinkaHash = "19TZFVQUWL66HvlHGP001RP8N24=",
                             LozinkaSalt = "Lbm29E5AFt6DRiztYw4QaQ==",
-                            Slika = ReadFile("Images/user1.png"),
+                            Slika = File.ReadAllBytes("Images/user1.png"),
                         },
                         new Korisnici
                         {
@@ -188,7 +188,7 @@ namespace SBT.WebAPI.Database
                             KorisnickoIme = "korisnik",
                             LozinkaHash = "IhFdfIjML0ors8/GONI0TjqWTkM=",
                             LozinkaSalt = "CjHVi4+z3fTtun6tWrdTMQ==",
-                            Slika = ReadFile("Images/user3.png"),
+                            Slika = File.ReadAllBytes("Images/user3.png"),
                         }
                     );
                 _context.SaveChanges();

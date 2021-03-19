@@ -20,6 +20,10 @@ namespace SBT.WebAPI.Database
             //modelBuilder.Entity<UredjajiKategorija>().HasKey(uk => new { uk.UredjajId, uk.KategorijaId });
             //modelBuilder.Entity<UredjajiKategorija>().HasOne(uk => uk.Uredjaj).WithMany(u => u.Kategorije).HasForeignKey(uk => uk.UredjajId);
             //modelBuilder.Entity<UredjajiKategorija>().HasOne(uk => uk.Kategorija).WithMany(k => k.Uredjaji).HasForeignKey(uk => uk.KategorijaId);
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
             modelBuilder.Entity<KorisniciUloge>(entity =>
             {
                 entity.HasOne(d => d.Korisnik)

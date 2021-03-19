@@ -11,5 +11,5 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 
-
+ADD ./SBT.WebAPI/Images ./Images
 ENTRYPOINT ["dotnet", "SBT.WebAPI.dll"]
