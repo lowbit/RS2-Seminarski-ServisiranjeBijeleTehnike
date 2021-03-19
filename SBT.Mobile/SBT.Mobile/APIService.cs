@@ -17,10 +17,10 @@ namespace SBT.Mobile
         private string _route = null;
 
 #if DEBUG
-        private string _apiUrl = "http://10.0.2.2:53810/api";
+        private string _apiUrl = "http://10.0.2.2:5000/api";
 #endif
 #if RELEASE
-        private string _apiUrl = "http://10.0.2.2:53810/api";
+        private string _apiUrl = "http://10.0.2.2:5000/api";
 #endif
 
         public APIService(string route)
