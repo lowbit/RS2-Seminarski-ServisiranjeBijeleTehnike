@@ -31,7 +31,24 @@ namespace SBT.WebAPI.Services
                 dodjeljeniServiser = _context.KorisniciUloge.Include(k => k.Korisnik).Where(ko => ko.Uloga.Naziv == "serviser").Select(k=>k.Korisnik).FirstOrDefault();
             }
             entity.ServiserId = dodjeljeniServiser.KorisnikId;
+            var status1 = _context.StatusServisa.Where(x => x.Naziv == "Servis napravljen").FirstOrDefault();
+            var status2 = _context.StatusServisa.Where(x => x.Naziv == "Servis dodjeljen serviseru").FirstOrDefault();
+            entity.StatusServisaId = status2.StatusServisaId;
             _context.Servisi.Add(entity);
+            _context.SaveChanges();
+            StanjeServisa ss1 = new StanjeServisa();
+            ss1.Azurirano = DateTime.Now;
+            ss1.Napomena = "Servir kreiran";
+            ss1.ServisId = entity.ServisId;
+            ss1.StatusServisaId = status1.StatusServisaId;
+            _context.StanjeServisa.Add(ss1);
+            _context.SaveChanges();
+            StanjeServisa ss2 = new StanjeServisa();
+            ss2.Azurirano = DateTime.Now;
+            ss2.Napomena = "Servis uspjesno dodjeljen serviseru";
+            ss2.ServisId = entity.ServisId;
+            ss2.StatusServisaId = status2.StatusServisaId;
+            _context.StanjeServisa.Add(ss2);
             _context.SaveChanges();
             return _mapper.Map<ServisModel>(entity);
         }
@@ -82,13 +99,13 @@ namespace SBT.WebAPI.Services
                 if (isServiser)
                 {
                     query = query.Where(u => u.ServiserId == request.KorisnikId);
-                    var list = query.ToList();
+                    var list = query.OrderByDescending(x=>x.DatumServisa).ToList();
                     return _mapper.Map<List<Model.ServisModel>>(list);
                 } 
                 else if (isKorisnik)
                 {
                     query = query.Where(u => u.KlijentId == request.KorisnikId);
-                    var list = query.ToList();
+                    var list = query.OrderByDescending(x => x.DatumServisa).ToList();
                     return _mapper.Map<List<Model.ServisModel>>(list);
                 }
             }
@@ -121,6 +138,18 @@ namespace SBT.WebAPI.Services
             }
             var list = query.ToList();
             return _mapper.Map<List<Model.ServisModel>>(list);
+        }
+
+        public List<TipDostaveModel> GetTipoveDostave()
+        {
+            var tipovi = _context.TipDostave.OrderBy(x => x.TipDostaveId).ToList();
+            return _mapper.Map<List<Model.TipDostaveModel>>(tipovi);
+        }
+
+        public List<TipPlacanjaModel> GetTipovePlacanja()
+        {
+            var tipovi = _context.TipPlacanja.OrderBy(x => x.TipPlacanjaId).ToList();
+            return _mapper.Map<List<Model.TipPlacanjaModel>>(tipovi);
         }
 
         public List<StatusServisaModel> GetVrsteStatusa()

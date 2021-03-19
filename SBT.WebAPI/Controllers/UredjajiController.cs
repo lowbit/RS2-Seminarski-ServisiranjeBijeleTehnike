@@ -35,15 +35,20 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.GetKategorijeList();
         }
+        [HttpGet("GetKategorijeListNotEmpty")]
+        public ActionResult<List<Model.KategorijaModel>> GetKategorijeListNotEmpty()
+        {
+            return _service.GetKategorijeListNotEmpty();
+        }
         [HttpGet("GetProizvodjaciList")]
         public ActionResult<List<Model.ProizvodjacModel>> GetProizvodjaciList()
         {
             return _service.GetProizvodjaciList();
         }
         [HttpGet("GetUredjajiByKategorijaList")]
-        public ActionResult<List<Model.UredjajModel>> GetUredjajiByKategorijeList(int kategorijaId)
+        public ActionResult<List<Model.UredjajModel>> GetUredjajiByKategorijeList([FromQuery] int id)
         {
-            return _service.GetUredjajiByKategorijaList(kategorijaId);
+            return _service.GetUredjajiByKategorijaList(id);
         }
         [HttpGet("GetUredjajiByProizvodjaciList")]
         public ActionResult<List<Model.UredjajModel>> GetUredjajiByProizvodjaciList(int proizvodjacId)

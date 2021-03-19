@@ -11,6 +11,7 @@ namespace SBT.WebAPI.Services
         Model.UredjajModel GetUredjajById(int uredjajId);
         List<Model.UredjajModel> GetUredjajiList(Model.Requests.SearchRequest request);
         List<Model.KategorijaModel> GetKategorijeList();
+        List<Model.KategorijaModel> GetKategorijeListNotEmpty();
         List<Model.ProizvodjacModel> GetProizvodjaciList();
         List<Model.UredjajModel> GetUredjajiByKategorijaList(int kategorijaId);
         List<Model.UredjajModel> GetUredjajiByProizvodjaciList(int proizvodjacId);

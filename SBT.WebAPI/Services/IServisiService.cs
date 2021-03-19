@@ -16,5 +16,7 @@ namespace SBT.WebAPI.Services
         List<Model.ServisModel> GetServisiByUser(SearchMobileServiceRequest request);
         List<Model.StatusServisaModel> GetVrsteStatusa();
         StanjeServisaInsertRequest StanjeServisaAdd(StanjeServisaInsertRequest request);
+        List<Model.TipPlacanjaModel> GetTipovePlacanja();
+        List<Model.TipDostaveModel> GetTipoveDostave();
     }
 }

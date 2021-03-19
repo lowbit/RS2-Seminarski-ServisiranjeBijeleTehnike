@@ -145,36 +145,6 @@ namespace SBT.WebAPI.Database
                 _context.Korisnici.AddRange(
                         new Korisnici
                         {
-                            Ime = "Rijad",
-                            Prezime = "Spahić",
-                            Email = "rijad.spahic@edu.fit.ba",
-                            KorisnickoIme = "desktop",
-                            LozinkaHash = "19TZFVQUWL66HvlHGP001RP8N24=",
-                            LozinkaSalt = "Lbm29E5AFt6DRiztYw4QaQ==",
-                            Slika = ReadFile("Images/user1.png"),
-                        },
-                        new Korisnici
-                        {
-                            Ime = "Eldin",
-                            Prezime = "Tiro",
-                            Email = "eldin.tiro@edu.fit.ba",
-                            KorisnickoIme = "serviser",
-                            LozinkaHash = "07ZLn15vrxFMThX5w2QCKfhnHlA=",
-                            LozinkaSalt = "0pBhY4NHGeGcNJdhOZYyUQ==",
-                            Slika = ReadFile("Images/user2.png"),
-                        },
-                        new Korisnici
-                        {
-                            Ime = "Amer",
-                            Prezime = "Bilić",
-                            Email = "amer.bilic@edu.fit.ba",
-                            KorisnickoIme = "korisnik",
-                            LozinkaHash = "IhFdfIjML0ors8/GONI0TjqWTkM=",
-                            LozinkaSalt = "CjHVi4+z3fTtun6tWrdTMQ==",
-                            Slika = ReadFile("Images/user3.png"),
-                        },
-                        new Korisnici
-                        {
                             Ime = "Enis",
                             Prezime = "Mulić",
                             Email = "enis.mulic@edu.fit.ba",
@@ -190,6 +160,35 @@ namespace SBT.WebAPI.Database
                             KorisnickoIme = "korisnik2",
                             LozinkaHash = "jFK60qom8/BeUQWW8gRJ3/oRaOE=",
                             LozinkaSalt = "ConJxTwH3ISJWzhgacLTHg==",
+                        },
+                        new Korisnici
+                        {
+                            Ime = "Eldin",
+                            Prezime = "Tiro",
+                            Email = "eldin.tiro@edu.fit.ba",
+                            KorisnickoIme = "serviser",
+                            LozinkaHash = "07ZLn15vrxFMThX5w2QCKfhnHlA=",
+                            LozinkaSalt = "0pBhY4NHGeGcNJdhOZYyUQ==",
+                            Slika = ReadFile("Images/user2.png"),
+                        }, new Korisnici
+                        {
+                            Ime = "Rijad",
+                            Prezime = "Spahić",
+                            Email = "rijad.spahic@edu.fit.ba",
+                            KorisnickoIme = "desktop",
+                            LozinkaHash = "19TZFVQUWL66HvlHGP001RP8N24=",
+                            LozinkaSalt = "Lbm29E5AFt6DRiztYw4QaQ==",
+                            Slika = ReadFile("Images/user1.png"),
+                        },
+                        new Korisnici
+                        {
+                            Ime = "Amer",
+                            Prezime = "Bilić",
+                            Email = "amer.bilic@edu.fit.ba",
+                            KorisnickoIme = "korisnik",
+                            LozinkaHash = "IhFdfIjML0ors8/GONI0TjqWTkM=",
+                            LozinkaSalt = "CjHVi4+z3fTtun6tWrdTMQ==",
+                            Slika = ReadFile("Images/user3.png"),
                         }
                     );
                 _context.SaveChanges();
@@ -252,7 +251,7 @@ namespace SBT.WebAPI.Database
                         },
                         new TipDostave
                         {
-                            Naziv = "NServiser transportuje"
+                            Naziv = "Serviser transportuje"
                         }
                     );
                 _context.SaveChanges();

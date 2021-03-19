@@ -7,7 +7,7 @@
         <viewModels:ServisiViewModel></viewModels:ServisiViewModel>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Dodaj" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Dodaj Servis" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>

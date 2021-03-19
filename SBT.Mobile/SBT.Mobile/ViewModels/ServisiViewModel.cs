@@ -1,4 +1,5 @@
-﻿using SBT.Model;
+﻿using SBT.Mobile.Views;
+using SBT.Model;
 using SBT.Model.Requests;
 using System;
 using System.Collections.Generic;
@@ -39,8 +40,7 @@ namespace SBT.Mobile.ViewModels
         public Command AddItemCommand { get; }
         private async void OnAddItem(object obj)
         {
-            await Application.Current.MainPage.DisplayAlert("", "", "Ok");
-            //await Application.Current.MainPage.Navigation.PushAsync();
+            await Application.Current.MainPage.Navigation.PushAsync(new NoviServisPage(APIService.KorisnikId));
         }
         public async Task Init()
         {

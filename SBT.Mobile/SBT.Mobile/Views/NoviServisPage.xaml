@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SBT.Mobile.ViewModels"
+             x:Class="SBT.Mobile.Views.NoviServisPage">
+    <ContentPage.BindingContext>
+        <viewModels:NoviServisViewModel></viewModels:NoviServisViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10">
+                <Label Text="Kategorija Uređaja"
+                HorizontalOptions="CenterAndExpand" />
+                <Picker ItemsSource="{Binding KategorijeList}" SelectedItem="{Binding SelectedKategorijaModel}" ItemDisplayBinding="{Binding Naziv}"></Picker>
+                <Label Text="Uređaj"
+                HorizontalOptions="CenterAndExpand" />
+                <Picker ItemsSource="{Binding UredjajiList}" SelectedItem="{Binding SelectedUredjajModel}" ItemDisplayBinding="{Binding Naziv}"></Picker>
+                <Label Text="Opis kvara"
+                HorizontalOptions="CenterAndExpand" />
+                <Entry Text="{Binding request.Opis}"></Entry>
+                <Label Text="Tip plaćanja"
+                HorizontalOptions="CenterAndExpand" />
+                <Picker ItemsSource="{Binding TipoviPlacanjaList}" SelectedItem="{Binding SelectedTipPlacanjaModel}" ItemDisplayBinding="{Binding Naziv}"></Picker>
+                <Label Text="Tip dostave"
+                HorizontalOptions="CenterAndExpand" />
+                <Picker ItemsSource="{Binding TipoviDostaveList}" SelectedItem="{Binding SelectedTipDostaveModel}" ItemDisplayBinding="{Binding Naziv}"></Picker>
+                <Button Text="Dodaj Servis" Command="{Binding DodajServisCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

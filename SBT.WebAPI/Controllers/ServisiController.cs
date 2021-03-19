@@ -58,5 +58,15 @@ namespace SBT.WebAPI.Controllers
         {
             return _service.StanjeServisaAdd(request);
         }
+        [HttpGet("GetTipovePlacanja")]
+        public ActionResult<List<Model.TipPlacanjaModel>> GetTipovePlacanja()
+        {
+            return _service.GetTipovePlacanja();
+        }
+        [HttpGet("GetTipoveDostave")]
+        public ActionResult<List<Model.TipDostaveModel>> GetTipoveDostave()
+        {
+            return _service.GetTipoveDostave();
+        }
     }
 }

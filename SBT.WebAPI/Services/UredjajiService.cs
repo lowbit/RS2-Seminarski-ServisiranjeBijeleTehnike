@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SBT.Model;
 using SBT.WebAPI.Database;
 using SBT.WebAPI.Exceptions;
@@ -50,6 +51,17 @@ namespace SBT.WebAPI.Services
         {
             var list = _context.Kategorije.ToList().OrderBy(k=>k.Naziv);
             return _mapper.Map<List<Model.KategorijaModel>>(list);
+        }
+        public List<KategorijaModel> GetKategorijeListNotEmpty()
+        {
+            var list = _context.Kategorije.Include(x=>x.Uredjaji).ToList().OrderBy(k => k.Naziv);
+            List<KategorijaModel> returnObj = new List<KategorijaModel>();
+            foreach (var item in list)
+            {
+                if (item.Uredjaji.Count > 0)
+                    returnObj.Add(_mapper.Map<Model.KategorijaModel>(item));
+            }
+            return returnObj;
         }
 
         public List<ProizvodjacModel> GetProizvodjaciList()
