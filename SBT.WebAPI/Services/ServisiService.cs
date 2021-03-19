@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.IO;
+using System.Net;
+using System.Net.Mail;
 namespace SBT.WebAPI.Services
 {
     public class ServisiService : IServisiService
@@ -28,7 +30,7 @@ namespace SBT.WebAPI.Services
             var dodjeljeniServiser = recommender.GetServisera(request.UredjajId);
             if (dodjeljeniServiser == null)
             {
-                dodjeljeniServiser = _context.KorisniciUloge.Include(k => k.Korisnik).Where(ko => ko.Uloga.Naziv == "serviser").Select(k=>k.Korisnik).FirstOrDefault();
+                dodjeljeniServiser = _context.KorisniciUloge.Include(k => k.Korisnik).Where(ko => ko.Uloga.Naziv == "serviser").Select(k => k.Korisnik).FirstOrDefault();
             }
             entity.ServiserId = dodjeljeniServiser.KorisnikId;
             var status1 = _context.StatusServisa.Where(x => x.Naziv == "Servis napravljen").FirstOrDefault();
@@ -75,21 +77,21 @@ namespace SBT.WebAPI.Services
                             .Include("Uredjaj").Include("TipPlacanja").Include("TipDostave").AsQueryable();
             var isKorisnik = false;
             var isServiser = false;
-            if(request.VrstaStatusaId > 0)
+            if (request.VrstaStatusaId > 0)
             {
                 query = query.Where(x => x.StatusServisaId == request.VrstaStatusaId);
             }
-            if (request.KorisnikId> 0)
+            if (request.KorisnikId > 0)
             {
-                var korisnik = _context.Korisnici.Include("KorisniciUloge.Uloga").Where(x=>x.KorisnikId == request.KorisnikId).FirstOrDefault();
+                var korisnik = _context.Korisnici.Include("KorisniciUloge.Uloga").Where(x => x.KorisnikId == request.KorisnikId).FirstOrDefault();
                 if (korisnik != null)
                 {
                     foreach (var item in korisnik.KorisniciUloge)
                     {
-                        if(item.Uloga.Naziv == "korisnik")
+                        if (item.Uloga.Naziv == "korisnik")
                         {
                             isKorisnik = true;
-                        } 
+                        }
                         if (item.Uloga.Naziv == "serviser")
                         {
                             isServiser = true;
@@ -99,9 +101,9 @@ namespace SBT.WebAPI.Services
                 if (isServiser)
                 {
                     query = query.Where(u => u.ServiserId == request.KorisnikId);
-                    var list = query.OrderByDescending(x=>x.DatumServisa).ToList();
+                    var list = query.OrderByDescending(x => x.DatumServisa).ToList();
                     return _mapper.Map<List<Model.ServisModel>>(list);
-                } 
+                }
                 else if (isKorisnik)
                 {
                     query = query.Where(u => u.KlijentId == request.KorisnikId);
@@ -180,6 +182,28 @@ namespace SBT.WebAPI.Services
             servis.StatusServisaId = statusServisa.StatusServisaId;
             _context.Servisi.Update(servis);
             _context.SaveChanges();
+            var zavrsniStatusServisa = _context.StatusServisa.Where(x => x.Naziv == "Servis zavrsen").FirstOrDefault();
+            //Send Email Does not work locally with emulators (Needs SSL for Sending Mail, but emulator does not work with SSL)
+            //if (entity.StatusServisaId == zavrsniStatusServisa.StatusServisaId)
+            //{
+            //    var klijent = _context.Korisnici.Where(x => x.KorisnikId == servis.KlijentId).FirstOrDefault();
+            //    using (MailMessage mm = new MailMessage("", klijent.Email))
+            //    {
+            //        mm.Subject = "Servis završen";
+            //        mm.Body = "Vaš uređaj je spreman, provjerite na aplikaciji stanje.";
+            //        mm.IsBodyHtml = false;
+            //        using (SmtpClient smtp = new SmtpClient())
+            //        {
+            //            smtp.Host = "smtp.gmail.com";
+            //            smtp.EnableSsl = true;
+            //            NetworkCredential NetworkCred = new NetworkCredential("", "");
+            //            smtp.UseDefaultCredentials = true;
+            //            smtp.Credentials = NetworkCred;
+            //            smtp.Port = 587;
+            //            smtp.Send(mm);
+            //        }
+            //    }
+            //}
             return request;
         }
     }
