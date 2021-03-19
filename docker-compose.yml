@@ -1,29 +1,33 @@
 version: '3'
-
 services:
-  sql:
-    image: postgres
+#mssql docker
+  sbt-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     restart: unless-stopped
     environment:
-      - POSTGRES_DB: postgres
-      - POSTGRES_USER: postgres
-      - POSTGRES_PASSWORD: postgres
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
     ports:
-      - 1433:1433
+      - 1401:1433
     networks:
-      - appnet
+      - sbtnet
 
-    
-  api:
+  sbt-api:
     restart: unless-stopped
-    build: .
+    build:
+      context: .
     environment:
-      - ConnectionStrings:Default=Server=sql,1433;Database=rs2db;User=postgres;Password=postgres;ConnectRetryCount=0
+      - ConnectionStrings:SBTDB=Server=sbt-sql,1433;Database=DBDocker;User=sa;Password=QWElkj132!;ConnectRetryCount=0
     ports:
-      - 64236:80
+      - 5000:80
     networks:
-      - appnet
-      
+      - sbtnet
+    links:
+      - sbt-sql
+    depends_on:
+      - sbt-sql
+
 networks:
-  appnet:
+  sbtnet:
     driver: bridge
