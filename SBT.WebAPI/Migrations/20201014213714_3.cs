@@ -89,7 +89,7 @@ namespace SBT.WebAPI.Migrations
                 column: "KategorijaId",
                 principalTable: "Kategorije",
                 principalColumn: "KategorijaId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
     }
 }

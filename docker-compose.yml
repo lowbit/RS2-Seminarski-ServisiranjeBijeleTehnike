@@ -7,7 +7,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=QWElkj132!
-      - MSSQL_PID=Developer
+      - MSSQL_PID=Express
     ports:
       - 1401:1433
     networks:
@@ -18,7 +18,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:SBTDB=Server=sbt-sql,1433;Database=DBDocker;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=sbt-sql,1433;Database=DBDocker;User=sa;Password=QWElkj132!;ConnectRetryCount=0
     ports:
       - 5000:80
     networks:

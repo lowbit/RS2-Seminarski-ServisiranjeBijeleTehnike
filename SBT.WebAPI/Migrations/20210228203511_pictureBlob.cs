@@ -30,7 +30,7 @@ namespace SBT.WebAPI.Migrations
                 column: "KategorijaId",
                 principalTable: "Kategorije",
                 principalColumn: "KategorijaId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -68,13 +68,13 @@ namespace SBT.WebAPI.Migrations
                         column: x => x.KategorijaId,
                         principalTable: "Kategorije",
                         principalColumn: "KategorijaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_UredjajiKategorija_Uredjaji_UredjajId",
                         column: x => x.UredjajId,
                         principalTable: "Uredjaji",
                         principalColumn: "UredjajId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

@@ -101,13 +101,13 @@ namespace SBT.WebAPI.Migrations
                         column: x => x.KategorijaId,
                         principalTable: "Kategorije",
                         principalColumn: "KategorijaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Uredjaji_Proizvodjaci_ProizvodjacId",
                         column: x => x.ProizvodjacId,
                         principalTable: "Proizvodjaci",
                         principalColumn: "ProizvodjacId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -127,7 +127,7 @@ namespace SBT.WebAPI.Migrations
                         column: x => x.UredjajId,
                         principalTable: "Uredjaji",
                         principalColumn: "UredjajId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -151,19 +151,19 @@ namespace SBT.WebAPI.Migrations
                         column: x => x.TipDostaveId,
                         principalTable: "TipDostave",
                         principalColumn: "TipDostaveId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Zahtjevi_TipPlacanja_TipPlacanjaId",
                         column: x => x.TipPlacanjaId,
                         principalTable: "TipPlacanja",
                         principalColumn: "TipPlacanjaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Zahtjevi_Uredjaji_UredjajId",
                         column: x => x.UredjajId,
                         principalTable: "Uredjaji",
                         principalColumn: "UredjajId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
@@ -207,7 +207,7 @@ namespace SBT.WebAPI.Migrations
                 column: "ZahtjevId",
                 principalTable: "Zahtjevi",
                 principalColumn: "ZahtjevId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -24,7 +24,7 @@ namespace SBT.WebAPI.Migrations
                 column: "ServisId",
                 principalTable: "Servisi",
                 principalColumn: "ServisId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

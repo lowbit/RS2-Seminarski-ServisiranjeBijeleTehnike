@@ -56,7 +56,7 @@ namespace SBT.WebAPI.Migrations
                 column: "StatusServisaId",
                 principalTable: "StatusServisa",
                 principalColumn: "StatusServisaId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_StanjeServisa_StatusServisa_StatusServisaId",
@@ -64,7 +64,7 @@ namespace SBT.WebAPI.Migrations
                 column: "StatusServisaId",
                 principalTable: "StatusServisa",
                 principalColumn: "StatusServisaId",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
