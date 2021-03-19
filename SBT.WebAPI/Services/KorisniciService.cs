@@ -207,11 +207,10 @@ namespace SBT.WebAPI.Services
             _context.Korisnici.Update(entity);
             _mapper.Map(request, entity);
             _context.SaveChanges();
-
-            var role = _context.KorisniciUloge.Where(x => x.KorisnikId == entity.KorisnikId);
-            _context.KorisniciUloge.RemoveRange(role);
-            if (request.Uloge.Count > 0)
+            if (request.Uloge !=null && request.Uloge.Count > 0)
             {
+                var role = _context.KorisniciUloge.Where(x => x.KorisnikId == entity.KorisnikId);
+                _context.KorisniciUloge.RemoveRange(role);
                 foreach (var item in request.Uloge)
                 {
                     var korisnikUloga = new KorisniciUloge

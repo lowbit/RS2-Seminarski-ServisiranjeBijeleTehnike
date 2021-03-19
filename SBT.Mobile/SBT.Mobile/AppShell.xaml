@@ -31,7 +31,7 @@
 
     <TabBar>
         <ShellContent Title="Servisi" Icon="icon_service.png" Route="ServisiPage" ContentTemplate="{DataTemplate local:ServisiPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent Title="O Korisniku" Icon="icon_about.png" ContentTemplate="{DataTemplate local:OKorisnikuPage}" />
     </TabBar>
 
     <!--

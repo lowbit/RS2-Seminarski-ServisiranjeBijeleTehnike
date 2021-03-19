@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModels="clr-namespace:SBT.Mobile.ViewModels"
+             x:Class="SBT.Mobile.Views.OKorisnikuPage"
+             Title="O Korisniku">
+    <ContentPage.BindingContext>
+        <viewModels:OKorisnikuViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Padding="36">
+            <Label Text="Korisničko ime" />
+            <Entry Text="{Binding request.KorisnickoIme}" IsEnabled="False"></Entry>
+            <Label Text="Email" />
+            <Entry Text="{Binding request.Email}"></Entry>
+            <Label Text="Ime" />
+            <Entry Text="{Binding request.Ime}"></Entry>
+            <Label Text="Prezime" />
+            <Entry Text="{Binding request.Prezime}"></Entry>
+            <Button Command="{Binding UpdateCommand}" Text="Update"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
