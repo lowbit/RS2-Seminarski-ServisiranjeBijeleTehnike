@@ -4,7 +4,7 @@ Servisiranje Bijele Tehnike is seminar project for RS2 which includes .NET Core 
 
 ## Installation
 
--Git clone this project
+Git clone this project
 ```
 docker image build . -t sbtimages/api
 docker-compose build
