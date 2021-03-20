@@ -14,6 +14,18 @@ Import into VS, Setup Startup projects for WinUI and Xamarin Android, Run App.
 
 ## Usage
 In case of starting UWP or iOS apps, additional configuration might be required, mobile app has been developed for Android Emulator, and has been setup as such.
+```
+Desktop login (Admin):
+desktop:test
+
+Mobile login (Serviser):
+serviser:test
+serviser2:test
+
+Mobile login (Korisnik):
+korisnik:test
+korisnik2:test
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
