@@ -17,13 +17,19 @@ namespace SBT.Mobile
         private string _route = null;
 
         //For UWP
-        private string _apiUrl = "http://localhost:5000/api";
-        //For Android
-        //private string _apiUrl = "http://10.0.2.2:5000/api";
+        private string _apiUrl = "";
 
         public APIService(string route)
         {
             _route = route;
+            if (Device.RuntimePlatform == Device.UWP)
+            {
+                _apiUrl = "http://localhost:5000/api";
+            }
+            else if (Device.RuntimePlatform == Device.Android)
+            {
+                _apiUrl = "http://10.0.2.2:5000/api";
+            }
         }
         public async Task<T> Get<T>(string additionalPath = "")
         {
