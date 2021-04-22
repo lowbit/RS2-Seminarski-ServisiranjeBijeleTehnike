@@ -30,7 +30,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Servisi" Icon="icon_service.png" Route="ServisiServiserPage" ContentTemplate="{DataTemplate local:ServisiServiserPage}" />
+        <ShellContent Title="Servisi" Icon="icon_feed.png" Route="ServisiServiserPage" ContentTemplate="{DataTemplate local:ServisiServiserPage}" />
         <ShellContent Title="O Serviseru" Icon="icon_about.png" ContentTemplate="{DataTemplate local:OKorisnikuPage}" />
     </TabBar>
 
