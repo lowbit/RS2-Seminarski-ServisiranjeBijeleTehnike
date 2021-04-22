@@ -24,7 +24,10 @@ namespace SBT.WinUI.Uredjaji
             InitializeComponent();
             _id = uredjajId;
         }
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            e.Cancel = false;
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 

@@ -23,7 +23,10 @@ namespace SBT.WinUI.Korisnici
             InitializeComponent();
             _id = korisnikId;
         }
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            e.Cancel = false;
+        }
         private async void frmKorisniciDetalji_Load(object sender, EventArgs e)
         {
             var uloge = await _service.Get<List<Model.UlogeModel>>("GetUlogeList");
